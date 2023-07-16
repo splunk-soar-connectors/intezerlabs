@@ -1,7 +1,7 @@
 {
     "appid": "93560e2e-cad2-4cb5-b4b6-770bfdd5f854",
     "name": "Intezer",
-    "description": "Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows.",
+    "description": "Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows",
     "type": "network security",
     "product_vendor": "Intezer Labs",
     "logo": "intezer.png",
@@ -32,7 +32,7 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "Test connection with Intezer",
+            "verbose": "Test connection with Intezer.",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -48,7 +48,7 @@
             "action": "detonate file",
             "identifier": "detonate_file",
             "description": "Analyze a file from Splunk vault with Intezer",
-            "verbose": "Analyze a file from Splunk Vault. The action returns the analysis ID and status",
+            "verbose": "Analyze a file from Splunk Vault. The action returns the analysis ID and status.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -132,7 +132,7 @@
             "action": "detonate hash",
             "identifier": "detonate_hash",
             "description": "Analyze a file hash (SHA1, SHA256, or MD5) with Intezer",
-            "verbose": "Analyze a hash from Splunk Vault. The action returns the analysis ID and status",
+            "verbose": "Analyze a hash from Splunk Vault. The action returns the analysis ID and status.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -216,7 +216,7 @@
             "action": "get file report",
             "identifier": "get_file_report",
             "description": "Get a file analysis report based on an analysis ID or a file hash",
-            "verbose": "Get a file analysis report based on an analysis ID or a file hash",
+            "verbose": "Get a file analysis report based on an analysis ID or a file hash.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -431,7 +431,7 @@
             "action": "detonate url",
             "identifier": "detonate_url",
             "description": "Analyze a suspicious URL with Intezer",
-            "verbose": "Analyze a suspicious URL with Intezer",
+            "verbose": "Analyze a suspicious URL with Intezer.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -501,7 +501,7 @@
             "action": "get url report",
             "identifier": "get_url_report",
             "description": "Get a URL analysis report based on a URL analysis ID",
-            "verbose": "Get a URL analysis report based on a URL analysis ID",
+            "verbose": "Get a URL analysis report based on a URL analysis ID.",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -669,7 +669,7 @@
             "action": "get alert",
             "identifier": "get_alert",
             "description": "Get an ingested alert triage and response information using alert ID",
-            "verbose": "Get an ingested alert triage and response information using alert ID",
+            "verbose": "Get an ingested alert triage and response information using alert ID.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -897,7 +897,7 @@
             "action": "index file",
             "identifier": "index_file",
             "description": "Index the file's genes into the organizational database",
-            "verbose": "Index the file's genes into the organizational database",
+            "verbose": "Index the file's genes into the organizational database.",
             "type": "correct",
             "read_only": false,
             "parameters": {
@@ -998,7 +998,7 @@
             "action": "unset index file",
             "identifier": "unset_index_file",
             "description": "Unset file's indexing",
-            "verbose": "Unset file's indexing",
+            "verbose": "Unset file's indexing.",
             "type": "correct",
             "read_only": false,
             "parameters": {
