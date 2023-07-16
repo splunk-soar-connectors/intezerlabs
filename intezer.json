@@ -15,11 +15,11 @@
     "utctime_updated": "2023-07-11T15:32:33.524664Z",
     "package_name": "phantom_intezer",
     "main_module": "intezer_connector.py",
-    "min_phantom_version": "5.4.0.101028",
+    "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",
     "configuration": {
         "intezer_api_key": {
-            "description": "api key",
+            "description": "API key",
             "data_type": "password",
             "required": true,
             "order": 0,
@@ -32,7 +32,7 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
+            "verbose": "Test connection with Intezer",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -45,10 +45,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "detonate_file",
+            "action": "detonate file",
             "identifier": "detonate_file",
             "description": "Analyze a file from Splunk vault with Intezer",
-            "verbose": "",
+            "verbose": "Analyze a file from Splunk Vault. The action returns the analysis ID and status",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -129,10 +129,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "detonate_hash",
+            "action": "detonate hash",
             "identifier": "detonate_hash",
             "description": "Analyze a file hash (SHA1, SHA256, or MD5) with Intezer",
-            "verbose": "",
+            "verbose": "Analyze a hash from Splunk Vault. The action returns the analysis ID and status",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -213,10 +213,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "get_file_report",
+            "action": "get file report",
             "identifier": "get_file_report",
-            "description": "Get a file analysis report based on an analysis ID or a file hash.",
-            "verbose": "",
+            "description": "Get a file analysis report based on an analysis ID or a file hash",
+            "verbose": "Get a file analysis report based on an analysis ID or a file hash",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -428,10 +428,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "detonate_url",
+            "action": "detonate url",
             "identifier": "detonate_url",
             "description": "Analyze a suspicious URL with Intezer",
-            "verbose": "",
+            "verbose": "Analyze a suspicious URL with Intezer",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -498,10 +498,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "get_url_report",
+            "action": "get url report",
             "identifier": "get_url_report",
-            "description": "Get a URL analysis report based on a URL analysis ID.",
-            "verbose": "",
+            "description": "Get a URL analysis report based on a URL analysis ID",
+            "verbose": "Get a URL analysis report based on a URL analysis ID",
             "type": "investigate",
             "read_only": false,
             "parameters": {
@@ -666,10 +666,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "get_alert",
+            "action": "get alert",
             "identifier": "get_alert",
-            "description": "Get an ingested alert triage and response information using alert ID.",
-            "verbose": "",
+            "description": "Get an ingested alert triage and response information using alert ID",
+            "verbose": "Get an ingested alert triage and response information using alert ID",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -894,10 +894,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "index_file",
+            "action": "index file",
             "identifier": "index_file",
-            "description": "Index the file's genes into the organizational database.",
-            "verbose": "",
+            "description": "Index the file's genes into the organizational database",
+            "verbose": "Index the file's genes into the organizational database",
             "type": "correct",
             "read_only": false,
             "parameters": {
@@ -995,10 +995,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "unset_index_file",
+            "action": "unset index file",
             "identifier": "unset_index_file",
             "description": "Unset file's indexing",
-            "verbose": "",
+            "verbose": "Unset file's indexing",
             "type": "correct",
             "read_only": false,
             "parameters": {
