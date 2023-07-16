@@ -1,0 +1,2 @@
+intezer-sdk==1.18
+requests>=2.31

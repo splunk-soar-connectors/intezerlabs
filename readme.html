@@ -1,0 +1,600 @@
+<!--File: readme.html
+Copyright (c) 2021-2023 Splunk Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+either express or implied. See the License for the specific language governing permissions
+and limitations under the License.
+-->
+<html>
+<head><title>Intezer Labs</title></head>
+<body>
+<h1 id="intezer-labs">Intezer Labs</h1>
+<p>Publisher: Splunk<br>Connector Version: 1.1.0<br>Product Vendor: Intezer Labs<br>Product Name: Intezer<br>Product
+    Version Supported (regex): &quot;.*&quot;<br>Minimum Product Version: 5.5.0</p>
+<h2 id="about-intezer-splunk-soar-connector">About Intezer Splunk SOAR Connector</h2>
+<p>Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats
+    by integrating Intezer&#39;s technology into their Splunk workflows.</p>
+<p><a href="#" title="and limitations under the License.">comment</a>: # &quot;&quot;</p>
+<p><a href="#" title="and limitations under the License.">comment</a>: # &quot;&quot;</p>
+<p><a href="#" title="and limitations under the License.">comment</a>: # &quot;&quot;</p>
+<p><a href="#" title="and limitations under the License.">comment</a>: # &quot;&quot;</p>
+<h2 id="port-information">Port Information</h2>
+<p>The app uses HTTP/ HTTPS protocol for communicating with the Intezer server. Below are the
+    default ports used by Splunk SOAR.</p>
+<table>
+    <thead>
+    <tr>
+        <th>Service Name</th>
+        <th>Transport Protocol</th>
+        <th>Port</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>http</td>
+        <td>tcp</td>
+        <td>80</td>
+    </tr>
+    <tr>
+        <td>https</td>
+        <td>tcp</td>
+        <td>443</td>
+    </tr>
+    </tbody>
+</table>
+<h3 id="configuration-variables">Configuration Variables</h3>
+<table>
+    <thead>
+    <tr>
+        <th>VARIABLE</th>
+        <th>REQUIRED</th>
+        <th>TYPE</th>
+        <th>DESCRIPTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>apikey</strong></td>
+        <td>required</td>
+        <td>password</td>
+        <td>Intezer API key</td>
+    </tr>
+    </tbody>
+</table>
+<h3 id="supported-actions">Supported Actions</h3>
+<ul>
+    <li><a href="#action-test-connectivity">test connectivity</a> - Test connection to Intezer.</li>
+    <li><a href="#action-detonate-file">detonate_file</a> - Analyze a file from Splunk vault with Intezer.</li>
+    <li><a href="#action-detonate-hash">detonate_hash</a> - Analyze a file hash (SHA1, SHA256, or MD5) with Intezer.
+    </li>
+    <li><a href="#action-get-file-report">get_file_report</a> - Get a file analysis report based on an analysis ID or a
+        file hash.
+    </li>
+    <li><a href="#action-detonate-url">detonate_url</a> - Analyze a suspicious URL with Intezer.</li>
+    <li><a href="#action-get-url-report">get_url_report</a> - Get a URL analysis report based on a URL analysis ID.</li>
+    <li><a href="#action-get-alert">get_alert</a> - Get an ingested alert triage and response information using alert
+        ID.
+    </li>
+    <li><a href="#action-index-file">index_file</a> - Index the file&#39;s genes into the organizational database.</li>
+    <li><a href="#action-unset-index-file">unset_index_file</a> - Unset file&#39;s indexing.</li>
+    <li><a href="#action-get-file">get_file</a> - Download a file from Intezer and store it in the vault.</li>
+</ul>
+<h2 id="action-test-connectivity-">action: &#39;test connectivity&#39;</h2>
+<p>Test connection to Intezer.</p>
+<p>Type: <strong>test</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<p>No parameters are required for this action</p>
+<h4 id="action-output">Action Output</h4>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>is_available</td>
+        <td>boolean</td>
+        <td>Whether the connection to Intezer was successful</td>
+        <td>true</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-detonate-file-">action: &#39;detonate file&#39;</h2>
+<p>Analyze a file from Splunk vault with Intezer.</p>
+<p>Type: <strong>investigate</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>vault_id</strong></td>
+        <td>required</td>
+        <td>File&#39;s vault ID</td>
+        <td>string</td>
+        <td><code>vault id</code></td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>analysis_id</td>
+        <td>string</td>
+        <td>Intezer analysis ID</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_status</td>
+        <td>string</td>
+        <td>Intezer analysis status</td>
+        <td><code>created</code> <code>in_progress</code> <code>queued</code> <code>failed</code> <code>finished</code>
+        </td>
+    </tr>
+    <tr>
+        <td>analysis_type</td>
+        <td>string</td>
+        <td>File Analysis</td>
+        <td><code>file</code></td>
+    </tr>
+    <tr>
+        <td>identifier</td>
+        <td>string</td>
+        <td>vault id requested</td>
+        <td><code>vault id</code></td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-detonate-hash-">action: &#39;detonate hash&#39;</h2>
+<p>Analyze a file hash (SHA1, SHA256, or MD5) with Intezer.</p>
+<p>Type: <strong>investigate</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>file_hash</strong></td>
+        <td>required</td>
+        <td>Analyze hash file via Intezer</td>
+        <td>string</td>
+        <td><code>hash</code> <code>sha256</code> <code>sha1</code> <code>md5</code></td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>analysis_id</td>
+        <td>string</td>
+        <td>Intezer analysis ID</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_status</td>
+        <td>string</td>
+        <td>Intezer analysis status</td>
+        <td><code>created</code> <code>in_progress</code> <code>queued</code> <code>failed</code> <code>finished</code>
+        </td>
+    </tr>
+    <tr>
+        <td>analysis_type</td>
+        <td>string</td>
+        <td>File Analysis</td>
+        <td><code>file</code></td>
+    </tr>
+    <tr>
+        <td>identifier</td>
+        <td>string</td>
+        <td>hash requested</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-get-file-report-">action: &#39;get file report&#39;</h2>
+<p>Get a file analysis report based on an analysis ID or a file hash.</p>
+<p>Type: <strong>generic</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<p>Provide either analysis_id or file_hash.</p>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>analysis_id</strong></td>
+        <td>optional</td>
+        <td>File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis</td>
+        <td>string</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><strong>file_hash</strong></td>
+        <td>optional</td>
+        <td>Hash of the desired report</td>
+        <td>string</td>
+        <td><code>hash</code> <code>sha256</code> <code>sha1</code> <code>md5</code></td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<p>For more details take a look here:</p>
+<ul>
+    <li><p><a href="https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id/get">get analysis details</a>
+    </p>
+    </li>
+    <li><p><a href="https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--iocs/get">iocs</a></p>
+    </li>
+    <li><p><a href="https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--dynamic-ttps/get">dynamic
+        ttps</a></p>
+    </li>
+    <li><p><a href="https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--detect/get">detect and
+        hunt</a></p>
+    </li>
+    <li><p><a
+            href="https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--sub-analyses-root-code-reuse/get">code
+        reuse</a></p>
+    </li>
+    <li><p><a
+            href="https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--sub-analyses-root-metadata/get">metadata</a>
+    </p>
+    </li>
+</ul>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>analysis_status</td>
+        <td>string</td>
+        <td>Intezer analysis status</td>
+        <td><code>created</code> <code>in_progress</code> <code>queued</code> <code>failed</code> <code>finished</code>
+        </td>
+    </tr>
+    <tr>
+        <td>analysis_type</td>
+        <td>string</td>
+        <td>File Analysis</td>
+        <td><code>file</code></td>
+    </tr>
+    <tr>
+        <td>analysis_id</td>
+        <td>string</td>
+        <td>Intezer analysis ID</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_content.analysis</td>
+        <td>dictionary</td>
+        <td>analysis report</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_content.iocs</td>
+        <td>dictionary</td>
+        <td>iocs report</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_content.ttps</td>
+        <td>dictionary</td>
+        <td>ttps report</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_content.metadata</td>
+        <td>dictionary</td>
+        <td>metadata report</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_content.root-code-reuse</td>
+        <td>dictionary</td>
+        <td>root-code-reuse report</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-detonate-url-">action: &#39;detonate url&#39;</h2>
+<p>Analyze a suspicious URL with Intezer.</p>
+<p>Type: <strong>investigate</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>url</strong></td>
+        <td>required</td>
+        <td>URL to analyze</td>
+        <td>string</td>
+        <td><code>valid url</code></td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>analysis_id</td>
+        <td>string</td>
+        <td>Intezer analysis ID</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_status</td>
+        <td>string</td>
+        <td>Intezer analysis status</td>
+        <td><code>created</code> <code>in_progress</code> <code>queued</code> <code>failed</code> <code>finished</code>
+        </td>
+    </tr>
+    <tr>
+        <td>analysis_type</td>
+        <td>string</td>
+        <td>URL Analysis</td>
+        <td><code>url</code></td>
+    </tr>
+    <tr>
+        <td>identifier</td>
+        <td>string</td>
+        <td>url requested</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-get-url-report-">action: &#39;get url report&#39;</h2>
+<p>Get a URL analysis report based on a URL analysis ID.</p>
+<p>Type: <strong>generic</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>analysis_id</strong></td>
+        <td>required</td>
+        <td>URL analysis ID. The analysis ID is returned when submitting a URL for analysis</td>
+        <td>string</td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<p>For more details take a look here:</p>
+<ul>
+    <li><a href="https://analyze.intezer.com/api-docs.html#/paths/url-analysis_id/get">url-analysis-id</a></li>
+</ul>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>analysis_status</td>
+        <td>string</td>
+        <td>Intezer analysis status</td>
+        <td><code>created</code> <code>in_progress</code> <code>queued</code> <code>failed</code> <code>finished</code>
+        </td>
+    </tr>
+    <tr>
+        <td>analysis_type</td>
+        <td>string</td>
+        <td>URL Analysis</td>
+        <td><code>url</code></td>
+    </tr>
+    <tr>
+        <td>analysis_id</td>
+        <td>string</td>
+        <td>Intezer analysis ID</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>analysis_content.analysis</td>
+        <td>dictionary</td>
+        <td>analysis report</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-get-alert-">action: &#39;get alert&#39;</h2>
+<p>Get an ingested alert triage and response information using alert ID.</p>
+<p>Type: <strong>generic</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>alert_id</strong></td>
+        <td>required</td>
+        <td>Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer</td>
+        <td>string</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><strong>environment</strong></td>
+        <td>required</td>
+        <td>The environment to get the report about</td>
+        <td>string</td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<p>For more details take a look here:</p>
+<ul>
+    <li><a href="https://analyze.intezer.com/api-docs.html#/paths/alerts-search/get">get alert</a></li>
+</ul>
+<h2 id="action-index-file-">action: &#39;index file&#39;</h2>
+<p>Index the file&#39;s genes into the organizational database.</p>
+<p>Type: <strong>correct</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>index_as</strong></td>
+        <td>required</td>
+        <td>Index as trusted or malicious</td>
+        <td>string</td>
+        <td><code>trusted</code> <code>malicious</code></td>
+    </tr>
+    <tr>
+        <td><strong>file_hash</strong></td>
+        <td>optional</td>
+        <td>hash to index</td>
+        <td>string</td>
+        <td><code>hash</code> <code>sha256</code> <code>sha1</code> <code>md5</code></td>
+    </tr>
+    <tr>
+        <td><strong>vault_id</strong></td>
+        <td>optional</td>
+        <td>File&#39;s vault ID</td>
+        <td>string</td>
+        <td><code>vault id</code></td>
+    </tr>
+    <tr>
+        <td><strong>family_name</strong></td>
+        <td>optional</td>
+        <td>family name to index as</td>
+        <td>string</td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<table>
+    <thead>
+    <tr>
+        <th>DATA PATH</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+        <th>EXAMPLE VALUES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>index_id</strong></td>
+        <td>string</td>
+        <td>Index ID</td>
+    </tr>
+    </tbody>
+</table>
+<h2 id="action-unset-index-file-">action: &#39;unset index file&#39;</h2>
+<p>Unset file&#39;s indexing.</p>
+<p>Type: <strong>correct</strong><br>Read only: <strong>True</strong></p>
+<h4 id="action-parameters">Action Parameters</h4>
+<table>
+    <thead>
+    <tr>
+        <th>PARAMETER</th>
+        <th>REQUIRED</th>
+        <th>DESCRIPTION</th>
+        <th>TYPE</th>
+        <th>CONTAINS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>file_hash</strong></td>
+        <td>required</td>
+        <td>Hash file to unset the indexing</td>
+        <td>string</td>
+        <td><code>hash</code> <code>sha256</code> <code>sha1</code> <code>md5</code></td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="action-output">Action Output</h4>
+<p>No output</p>
+</body>
+</html>
