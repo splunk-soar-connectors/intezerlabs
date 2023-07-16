@@ -114,7 +114,7 @@ class IntezerConnector(BaseConnector):
 
         :param vault_id: The vault id of the file to analyze.
         """
-        phantom.debug('Detonating file: {}'.format(vault_id))
+        phantom.save_progress('Detonating file: {}'.format(vault_id))
         file_path, status = self._locate_file_path(vault_id)
         if status != phantom.APP_SUCCESS:
             return self.intezer_action_result.set_status(status)
@@ -122,7 +122,7 @@ class IntezerConnector(BaseConnector):
         try:
             file_analysis.send(requester='splunk_soar')
         except IntezerError as e:
-            phantom.error_print(f'File analysis failed - {e}')
+            phantom.save_progress(f'File analysis failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'File analysis failed - {e}')
         result = {'analysis_id': file_analysis.analysis_id,
                   'analysis_status': file_analysis.status.value,
@@ -130,7 +130,7 @@ class IntezerConnector(BaseConnector):
                   'identifier': vault_id}
         self.intezer_action_result.add_data(result)
         self.intezer_action_result.update_summary(result)
-        phantom.debug('Detonate file result: {}'.format(result))
+        phantom.save_progress('Detonate file result: {}'.format(result))
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def index_file(self, index_as: str, sha256: str, family_name: str = None, **kwargs):
@@ -141,7 +141,7 @@ class IntezerConnector(BaseConnector):
         :param sha256: The hash of the file to index.
         :param family_name: The family name of the file to index.
         """
-        phantom.debug('Indexing file: {}'.format(sha256))
+        phantom.save_progress('Indexing file: {}'.format(sha256))
         index_as = IndexType.from_str(index_as)
         index = Index(index_as=index_as,
                       sha256=sha256,
@@ -149,11 +149,11 @@ class IntezerConnector(BaseConnector):
         try:
             index.send(wait=True)
         except IntezerError as e:
-            phantom.error_print(f'Index file failed - {e}')
+            phantom.save_progress(f'Index file failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Index file failed - {e}')
         self.intezer_action_result.add_data({'index_id': index.index_id})
         self.intezer_action_result.update_summary({'index_id': index.index_id})
-        phantom.debug('Index file result: {}'.format(index.index_id))
+        phantom.save_progress('Index file result: {}'.format(index.index_id))
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def unset_index_file(self, file_hash: str, **kwargs):
@@ -162,15 +162,15 @@ class IntezerConnector(BaseConnector):
 
         :param file_hash: The hash of the file to unset indexing.
         """
-        phantom.debug('Unset indexing of file: {}'.format(file_hash))
+        phantom.save_progress('Unset indexing of file: {}'.format(file_hash))
         index = Index(index_as=IndexType.TRUSTED,
                       sha256=file_hash)
         try:
             index.unset_indexing(wait=True)
         except IntezerError as e:
-            phantom.error_print(f'Unset index file failed - {e}')
+            phantom.save_progress(f'Unset index file failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Unset index file failed - {e}')
-        phantom.debug('Unset index file result: {}'.format(index.index_id))
+        phantom.save_progress('Unset index file result: {}'.format(index.index_id))
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def get_file_report(self, analysis_id: str = None, file_hash: str = None, private_only: bool = False,
@@ -183,7 +183,7 @@ class IntezerConnector(BaseConnector):
         :param private_only: Whether to show only private reports (relevant only for hashes).
         :param wait_for_completion: Whether to wait for the analysis to complete before returning the report.
         """
-        phantom.debug('Getting file report')
+        phantom.save_progress('Getting file report')
         if not analysis_id and not file_hash:
             return self.intezer_action_result.set_status(phantom.APP_ERROR,
                                                          'Must specify either analysis id or hash')
@@ -205,7 +205,7 @@ class IntezerConnector(BaseConnector):
                     except AnalysisIsAlreadyRunningError as ex:
                         file_analysis = FileAnalysis.from_analysis_id(ex.analysis_id)
                     except HashDoesNotExistError:
-                        phantom.error_print(f'Hash {file_hash} does not exist')
+                        phantom.save_progress(f'Hash {file_hash} does not exist')
                         return self.intezer_action_result.set_status(phantom.APP_ERROR,
                                                                      f'Hash {file_hash} does not exist')
             else:
@@ -214,14 +214,14 @@ class IntezerConnector(BaseConnector):
             if wait_for_completion:
                 file_analysis.wait_for_completion()
         except IntezerError as e:
-            phantom.error_print(f'Get file report failed - {e}')
+            phantom.save_progress(f'Get file report failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Get file report failed - {e}')
         if file_analysis.status != AnalysisStatusCode.FINISHED:
             self.intezer_action_result.add_data(
                 {**base_summary, 'analysis_status': file_analysis.status.value, 'analysis_content': {}})
             self.intezer_action_result.update_summary(
                 {**base_summary, 'analysis_status': file_analysis.status.value, 'analysis_content': {}})
-            phantom.debug('File analysis is still running')
+            phantom.save_progress('File analysis is still running')
             return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
         try:
             analysis = {
@@ -236,10 +236,10 @@ class IntezerConnector(BaseConnector):
                 {**base_summary, 'analysis_status': AnalysisStatusCode.IN_PROGRESS.value})
             self.intezer_action_result.update_summary(
                 {**base_summary, 'analysis_status': AnalysisStatusCode.IN_PROGRESS.value})
-            phantom.debug('File analysis is still running')
+            phantom.save_progress('File analysis is still running')
             return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
         except IntezerError as e:
-            phantom.error_print(f'Get file report failed - {e}')
+            phantom.save_progress(f'Get file report failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Get file report failed - {e}')
         result = {**base_summary,
                   'analysis_status': AnalysisStatusCode.FINISHED.value,
@@ -247,7 +247,7 @@ class IntezerConnector(BaseConnector):
         self.intezer_action_result.add_data(result)
         self.intezer_action_result.update_summary(result)
 
-        phantom.debug('File analysis finished')
+        phantom.save_progress('File analysis finished')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def get_url_report(self, analysis_id: str, wait_for_completion=True, **kwargs):
@@ -256,21 +256,21 @@ class IntezerConnector(BaseConnector):
         :param analysis_id: The analysis id of the desired report.
         :param wait_for_completion: Whether to wait for the analysis to finish.
         """
-        phantom.debug('Getting url report')
+        phantom.save_progress('Getting url report')
         try:
             base_summary = {'analysis_id': analysis_id, 'analysis_type': 'url'}
             url_analysis = UrlAnalysis.from_analysis_id(analysis_id)
             if wait_for_completion:
                 url_analysis.wait_for_completion()
         except IntezerError as e:
-            phantom.error_print(f'Get url report failed - {e}')
+            phantom.save_progress(f'Get url report failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Get url report failed - {e}')
         if url_analysis.status != AnalysisStatusCode.FINISHED:
             self.intezer_action_result.add_data(
                 {**base_summary, 'analysis_status': url_analysis.status.value, 'analysis_content': {}})
             self.intezer_action_result.update_summary(
                 {**base_summary, 'analysis_status': url_analysis.status.value, 'analysis_content': {}})
-            phantom.debug('Url analysis is still running')
+            phantom.save_progress('Url analysis is still running')
             return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
         result = {**base_summary,
@@ -278,7 +278,7 @@ class IntezerConnector(BaseConnector):
                   'analysis_content': {'analysis': url_analysis.result()}}
         self.intezer_action_result.add_data(result)
         self.intezer_action_result.update_summary(result)
-        phantom.debug('Url analysis finished')
+        phantom.save_progress('Url analysis finished')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def get_alert(self, alert_id: str, wait_for_completion: bool = True, **kwargs):
@@ -288,16 +288,16 @@ class IntezerConnector(BaseConnector):
         :param alert_id: The alert id to get.
         :param wait_for_completion: Whether to wait for the analysis to finish.
         """
-        phantom.debug('Getting alert')
+        phantom.save_progress('Getting alert')
         try:
             alert = Alert.from_id(alert_id, wait=wait_for_completion)
             alert_details = alert.result()
         except IntezerError as e:
-            phantom.error_print(f'Get alert failed - {e}')
+            phantom.save_progress(f'Get alert failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Get alert failed - {e}')
         self.intezer_action_result.add_data(alert_details)
         self.intezer_action_result.update_summary(alert_details)
-        phantom.debug('Alert finished')
+        phantom.save_progress('Alert finished')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def initialize(self, **kwargs):
