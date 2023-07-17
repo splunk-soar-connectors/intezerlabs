@@ -1,5 +1,5 @@
 {
-    "appid": "c9ad1407-f117-4398-a78c-1b215510449c",
+    "appid": "8aa996b0-4102-464d-80bc-2e5c2a05db65",
     "name": "Intezer",
     "description": "Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows",
     "type": "network security",
@@ -11,8 +11,8 @@
     "product_version_regex": ".*",
     "publisher": "Intezer Lasb",
     "license": "Copyright (c) Intezer Lasb, 2023",
-    "app_version": "2.0.0",
-    "utctime_updated": "2023-07-17T13:58:22.445920Z",
+    "app_version": "2.1.0",
+    "utctime_updated": "2023-07-17T14:43:38.088340Z",
     "package_name": "phantom_intezer",
     "main_module": "intezer_connector.py",
     "min_phantom_version": "5.5.0",
@@ -1056,11 +1056,11 @@
         ]
     },
     "custom_made": true,
-    "directory": "intezer_c9ad1407-f117-4398-a78c-1b215510449c",
+    "directory": "intezer_8aa996b0-4102-464d-80bc-2e5c2a05db65",
     "version": 1,
     "appname": "-",
     "executable": "spawn3",
     "disabled": false,
     "copied_from_id": 14,
-    "copied_from_version": "1.9.0"
+    "copied_from_version": "2.0.0"
 }
