@@ -11,6 +11,7 @@ from intezer_sdk.consts import AnalysisStatusCode, IndexType
 from intezer_sdk.errors import AnalysisIsAlreadyRunningError, AnalysisIsStillRunningError, HashDoesNotExistError, IntezerError
 from intezer_sdk.index import Index
 from requests.exceptions import HTTPError
+
 from intezer_consts import INTEZER_JSON_APIKEY
 
 try:
