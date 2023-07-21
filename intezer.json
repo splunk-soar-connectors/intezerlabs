@@ -4,14 +4,14 @@
     "description": "Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows",
     "type": "network security",
     "product_vendor": "Intezer Labs",
-    "logo": "intezer.svg",
-    "logo_dark": "intezer_dark.svg",
+    "logo": "logo_intezer.svg",
+    "logo_dark": "logo_intezer_dark.svg",
     "product_name": "Intezer",
     "python_version": "3",
     "product_version_regex": ".*",
-    "publisher": "Intezer Lasb",
-    "license": "Copyright (c) Intezer Lasb, 2023",
-    "app_version": "2.1.0",
+    "publisher": "Intezer Labs",
+    "license": "Copyright (c) Intezer Labs, 2023",
+    "app_version": "1.0.0",
     "utctime_updated": "2023-07-17T14:43:38.088340Z",
     "package_name": "phantom_intezer",
     "main_module": "intezer_connector.py",
@@ -22,9 +22,7 @@
             "description": "API key",
             "data_type": "password",
             "required": true,
-            "order": 0,
-            "name": "intezer_api_key",
-            "id": 0
+            "order": 0
         }
     },
     "actions": [
@@ -36,12 +34,7 @@
             "type": "test",
             "read_only": true,
             "parameters": {},
-            "output": [
-                {
-                    "data_path": "action_result.data.*.is_available",
-                    "data_type": "boolean"
-                }
-            ],
+            "output": [],
             "versions": "EQ(*)"
         },
         {
@@ -49,26 +42,29 @@
             "identifier": "detonate_file",
             "description": "Analyze a file from Splunk vault with Intezer",
             "verbose": "Analyze a file from Splunk Vault. The action returns the analysis ID and status.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": false,
             "parameters": {
                 "vault_id": {
                     "description": "File's vault ID",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "vault_id"
+                    "primary": true,
+                    "contains": [
+                        "vault id",
+                        "sha1"
+                    ],
+                    "order": 0
                 }
             },
             "output": [
                 {
                     "data_path": "action_result.parameter.vault_id",
                     "data_type": "string",
-                    "contains": [],
+                    "contains": [
+                        "vault id",
+                        "sha1"
+                    ],
                     "column_name": "vault_id",
                     "column_order": 0
                 },
@@ -119,7 +115,7 @@
                     "data_path": "action_result.data.*.identifier",
                     "data_type": "string",
                     "contains": [
-                        "vault_id"
+                        "vault id"
                     ]
                 }
             ],
@@ -133,7 +129,7 @@
             "identifier": "detonate_hash",
             "description": "Analyze a file hash (SHA1, SHA256, or MD5) with Intezer",
             "verbose": "Analyze a hash from Splunk Vault. The action returns the analysis ID and status.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": false,
             "parameters": {
                 "file_hash": {
@@ -142,10 +138,7 @@
                     "required": true,
                     "primary": false,
                     "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "file_hash"
+                    "order": 0
                 }
             },
             "output": [
@@ -218,64 +211,43 @@
             "description": "Get a file analysis report based on an analysis ID or a file hash",
             "verbose": "Get a file analysis report based on an analysis ID or a file hash.",
             "type": "investigate",
-            "read_only": false,
+            "read_only": true,
             "parameters": {
                 "analysis_id": {
                     "description": "File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis.",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "analysis_id",
-                    "id": 1,
-                    "param_name": "analysis_id"
+                    "primary": true,
+                    "contains": [
+                        "analysis id"
+                    ],
+                    "order": 0
                 },
                 "file_hash": {
                     "description": "File's hash (SHA1, SHA256, MD5)",
                     "data_type": "string",
-                    "required": false,
                     "primary": false,
                     "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 1,
-                    "name": "file_hash",
-                    "id": 2,
-                    "param_name": "file_hash"
+                    "order": 1
                 },
                 "private_only": {
                     "description": "The \"private_only\" parameter, used when retrieving analysis reports by file hash, determines database access: \"false\" (default) uses both public and private databases, consuming additional quota for first-time public access; \"true\" uses only your private database, conserving quota.",
                     "data_type": "boolean",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "default": false,
-                    "order": 2,
-                    "name": "private_only",
-                    "id": 3,
-                    "param_name": "private_only"
+                    "order": 2
                 },
                 "wait_for_completion": {
                     "description": "Whether to wait for the analysis to finish",
                     "data_type": "boolean",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
                     "default": true,
-                    "order": 3,
-                    "name": "wait_for_completion",
-                    "id": 4,
-                    "param_name": "wait_for_completion"
+                    "order": 3
                 }
             },
             "output": [
                 {
                     "data_path": "action_result.parameter.analysis_id",
                     "data_type": "string",
-                    "contains": [],
+                    "contains": [
+                        "analysis id"
+                    ],
                     "column_name": "analysis_id",
                     "column_order": 0
                 },
@@ -296,7 +268,6 @@
                 {
                     "data_path": "action_result.parameter.wait_for_completion",
                     "data_type": "boolean",
-                    "contains": [],
                     "column_name": "wait_for_completion",
                     "column_order": 3
                 },
@@ -432,26 +403,27 @@
             "identifier": "detonate_url",
             "description": "Analyze a suspicious URL with Intezer",
             "verbose": "Analyze a suspicious URL with Intezer.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": false,
             "parameters": {
                 "url": {
                     "description": "URL to analyze",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "url"
+                    "primary": true,
+                    "contains": [
+                        "url"
+                    ],
+                    "order": 0
                 }
             },
             "output": [
                 {
                     "data_path": "action_result.parameter.url",
                     "data_type": "string",
-                    "contains": [],
+                    "contains": [
+                        "url"
+                    ],
                     "column_name": "url",
                     "column_order": 0
                 },
@@ -503,46 +475,38 @@
             "description": "Get a URL analysis report based on a URL analysis ID",
             "verbose": "Get a URL analysis report based on a URL analysis ID.",
             "type": "investigate",
-            "read_only": false,
+            "read_only": true,
             "parameters": {
                 "analysis_id": {
                     "description": "URL analysis ID. The analysis ID is returned when submitting a URL for analysis.",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "analysis_id",
-                    "id": 1,
-                    "param_name": "analysis_id"
+                    "primary": true,
+                    "contains": [
+                        "analysis id"
+                    ],
+                    "order": 0
                 },
                 "wait_for_completion": {
                     "description": "Whether to wait for the analysis to finish.",
                     "data_type": "boolean",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
                     "default": true,
-                    "order": 1,
-                    "name": "wait_for_completion",
-                    "id": 2,
-                    "param_name": "wait_for_completion"
+                    "order": 1
                 }
             },
             "output": [
                 {
                     "data_path": "action_result.parameter.analysis_id",
                     "data_type": "string",
-                    "contains": [],
+                    "contains": [
+                        "analysis id"
+                    ],
                     "column_name": "analysis_id",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.wait_for_completion",
                     "data_type": "boolean",
-                    "contains": [],
                     "column_name": "wait_for_completion",
                     "column_order": 1
                 },
@@ -670,8 +634,8 @@
             "identifier": "get_alert",
             "description": "Get an ingested alert triage and response information using alert ID",
             "verbose": "Get an ingested alert triage and response information using alert ID.",
-            "type": "generic",
-            "read_only": false,
+            "type": "investigate",
+            "read_only": true,
             "parameters": {
                 "alert_id": {
                     "description": "Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer.",
@@ -679,24 +643,13 @@
                     "required": true,
                     "primary": false,
                     "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "alert_id",
-                    "id": 1,
-                    "param_name": "alert_id"
+                    "order": 0
                 },
                 "wait_for_completion": {
                     "description": "Whether to wait for the analysis to finish.",
                     "data_type": "boolean",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
                     "default": true,
-                    "order": 1,
-                    "name": "wait_for_completion",
-                    "id": 2,
-                    "param_name": "wait_for_completion"
+                    "order": 1
                 }
             },
             "output": [
@@ -710,7 +663,6 @@
                 {
                     "data_path": "action_result.parameter.wait_for_completion",
                     "data_type": "boolean",
-                    "contains": [],
                     "column_name": "wait_for_completion",
                     "column_order": 1
                 },
@@ -905,43 +857,29 @@
                     "description": "\"trusted\" or \"malicious\"",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
                     "value_list": [
                         "trusted",
                         "malicious"
                     ],
                     "default": "",
-                    "order": 0,
-                    "name": "index_as",
-                    "id": 1,
-                    "param_name": "index_as"
+                    "order": 0
                 },
                 "vault_id": {
                     "description": "File's vault ID",
                     "data_type": "string",
-                    "required": false,
-                    "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 1,
-                    "name": "vault_id",
-                    "id": 2,
-                    "param_name": "vault_id"
+                    "primary": true,
+                    "contains": [
+                        "vault id",
+                        "sha1"
+                    ],
+                    "order": 1
                 },
                 "family_name": {
                     "description": "Family name",
                     "data_type": "string",
-                    "required": false,
                     "primary": false,
                     "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 2,
-                    "name": "family_name",
-                    "id": 3,
-                    "param_name": "family_name"
+                    "order": 2
                 }
             },
             "output": [
@@ -955,14 +893,16 @@
                 {
                     "data_path": "action_result.parameter.vault_id",
                     "data_type": "string",
-                    "contains": [],
+                    "contains": [
+                        "vault id",
+                        "sha1"
+                    ],
                     "column_name": "vault_id",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.family_name",
                     "data_type": "string",
-                    "contains": [],
                     "column_name": "family_name",
                     "column_order": 2
                 },
@@ -1008,10 +948,7 @@
                     "required": true,
                     "primary": false,
                     "contains": [],
-                    "value_list": [],
-                    "default": "",
-                    "order": 0,
-                    "name": "file_hash"
+                    "order": 0
                 }
             },
             "output": [
@@ -1050,17 +987,57 @@
     "pip3_dependencies": {
         "wheel": [
             {
-                "module": "intezer-sdk",
+                "module": "certifi",
+                "input_file": "wheels/py3/certifi-2023.5.7-py3-none-any.whl"
+            },
+            {
+                "module": "charset_normalizer",
+                "input_file": "wheels/py3/charset_normalizer-2.0.12-py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/py3/idna-3.4-py3-none-any.whl"
+            },
+            {
+                "module": "intezer_sdk",
                 "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.27.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.16-py2.py3-none-any.whl"
             }
         ]
     },
-    "custom_made": true,
-    "directory": "intezer_8aa996b0-4102-464d-80bc-2e5c2a05db65",
-    "version": 1,
-    "appname": "-",
-    "executable": "spawn3",
-    "disabled": false,
-    "copied_from_id": 14,
-    "copied_from_version": "2.0.0"
+    "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "certifi",
+                "input_file": "wheels/py3/certifi-2023.5.7-py3-none-any.whl"
+            },
+            {
+                "module": "charset_normalizer",
+                "input_file": "wheels/py39/charset_normalizer-3.2.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/py3/idna-3.4-py3-none-any.whl"
+            },
+            {
+                "module": "intezer_sdk",
+                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/py3/requests-2.31.0-py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/py3/urllib3-2.0.4-py3-none-any.whl"
+            }
+        ]
+    }
 }

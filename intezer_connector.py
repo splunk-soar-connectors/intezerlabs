@@ -5,16 +5,10 @@ import uuid
 
 import requests
 from intezer_sdk.alerts import Alert
-from intezer_sdk.analysis import FileAnalysis
-from intezer_sdk.analysis import UrlAnalysis
-from intezer_sdk.api import get_global_api
-from intezer_sdk.api import set_global_api
-from intezer_sdk.consts import AnalysisStatusCode
-from intezer_sdk.consts import IndexType
-from intezer_sdk.errors import AnalysisIsAlreadyRunningError
-from intezer_sdk.errors import AnalysisIsStillRunningError
-from intezer_sdk.errors import HashDoesNotExistError
-from intezer_sdk.errors import IntezerError
+from intezer_sdk.analysis import FileAnalysis, UrlAnalysis
+from intezer_sdk.api import get_global_api, set_global_api
+from intezer_sdk.consts import AnalysisStatusCode, IndexType
+from intezer_sdk.errors import AnalysisIsAlreadyRunningError, AnalysisIsStillRunningError, HashDoesNotExistError, IntezerError
 from intezer_sdk.index import Index
 from requests.exceptions import HTTPError
 
@@ -22,10 +16,9 @@ from intezer_consts import INTEZER_JSON_APIKEY
 
 try:
     import phantom.app as phantom
-    from phantom.app import ActionResult
-    from phantom.vault import Vault
-    from phantom.app import BaseConnector
     import phantom.rules as ph_rules
+    from phantom.app import ActionResult, BaseConnector
+    from phantom.vault import Vault
 except ImportError:
     pass
 
