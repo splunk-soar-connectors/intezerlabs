@@ -11,7 +11,7 @@
     "product_version_regex": ".*",
     "publisher": "Intezer Lasb",
     "license": "Copyright (c) Intezer Lasb, 2023",
-    "app_version": "2.3.0",
+    "app_version": "1.0.0",
     "utctime_updated": "2023-07-20T10:09:10.548071Z",
     "package_name": "phantom_intezer",
     "main_module": "intezer_connector.py",
