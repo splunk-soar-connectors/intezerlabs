@@ -1,5 +1,5 @@
 {
-    "appid": "8aa996b0-4102-464d-80bc-2e5c2a05db65",
+    "appid": "db4ffa91-2940-4855-a4fe-3a76d3433d4e",
     "name": "Intezer",
     "description": "Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows",
     "type": "network security",
@@ -692,13 +692,6 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.creation_time",
-                    "data_type": "string",
-                    "contains": [
-                        "time in utc"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.source",
                     "data_type": "string",
                     "contains": [
@@ -727,12 +720,15 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.alert.is_mitigated",
-                    "data_type": "boolean"
+                    "data_path": "action_result.data.*.alert.creation_time",
+                    "data_type": "string",
+                    "contains": [
+                        "time in utc"
+                    ]
                 },
                 {
-                    "data_path": "action_result.data.*.alert.*.engines",
-                    "data_type": "string"
+                    "data_path": "action_result.data.*.alert.is_mitigated",
+                    "data_type": "boolean"
                 },
                 {
                     "data_path": "action_result.data.*.alert.device.hostname",
@@ -809,34 +805,6 @@
                     "data_type": "string",
                     "contains": [
                         "scan"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.alert.processes.*.file_name",
-                    "data_type": "string",
-                    "contains": [
-                        "file name"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.alert.processes.*.command_line",
-                    "data_type": "string",
-                    "contains": [
-                        "command line"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.alert.processes.*.path",
-                    "data_type": "string",
-                    "contains": [
-                        "path"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.alert.processes.*.file_hash",
-                    "data_type": "string",
-                    "contains": [
-                        "file hash"
                     ]
                 }
             ],
