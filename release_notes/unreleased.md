@@ -1,5 +1,5 @@
 **Unreleased**
-* Added support of the below actions:
+* Initial release of app with the support of the below actions:
     * test connectivity
     * detonate file
     * detonate hash

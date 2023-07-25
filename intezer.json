@@ -51,8 +51,7 @@
                     "required": true,
                     "primary": true,
                     "contains": [
-                        "vault id",
-                        "sha1"
+                        "vault id"
                     ],
                     "order": 0
                 }
@@ -62,17 +61,20 @@
                     "data_path": "action_result.parameter.vault_id",
                     "data_type": "string",
                     "contains": [
-                        "vault id",
-                        "sha1"
+                        "vault id"
                     ],
-                    "column_name": "vault_id",
+                    "column_name": "Vault ID",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -117,6 +119,10 @@
                     "contains": [
                         "vault id"
                     ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -136,8 +142,13 @@
                     "description": "File hash (SHA1, SHA256, or MD5)",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
+                    "primary": true,
+                    "contains": [
+                        "hash",
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
                     "order": 0
                 }
             },
@@ -145,15 +156,24 @@
                 {
                     "data_path": "action_result.parameter.file_hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "file_hash",
+                    "contains": [
+                        "hash",
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
+                    "column_name": "File Hash",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -196,8 +216,15 @@
                     "data_path": "action_result.data.*.identifier",
                     "data_type": "string",
                     "contains": [
-                        "file_hash"
+                        "hash",
+                        "sha1",
+                        "sha256",
+                        "md5"
                     ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -214,7 +241,7 @@
             "read_only": true,
             "parameters": {
                 "analysis_id": {
-                    "description": "File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis.",
+                    "description": "File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis",
                     "data_type": "string",
                     "primary": true,
                     "contains": [
@@ -225,12 +252,17 @@
                 "file_hash": {
                     "description": "File's hash (SHA1, SHA256, MD5)",
                     "data_type": "string",
-                    "primary": false,
-                    "contains": [],
+                    "primary": true,
+                    "contains": [
+                        "hash",
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
                     "order": 1
                 },
                 "private_only": {
-                    "description": "The \"private_only\" parameter, used when retrieving analysis reports by file hash, determines database access: \"false\" (default) uses both public and private databases, consuming additional quota for first-time public access; \"true\" uses only your private database, conserving quota.",
+                    "description": "The \"private_only\" parameter, used when retrieving analysis reports by file hash, determines database access: \"false\" (default) uses both public and private databases, consuming additional quota for first-time public access; \"true\" uses only your private database, conserving quota",
                     "data_type": "boolean",
                     "order": 2
                 },
@@ -248,34 +280,42 @@
                     "contains": [
                         "analysis id"
                     ],
-                    "column_name": "analysis_id",
+                    "column_name": "Analysis ID",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.file_hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "file_hash",
+                    "contains": [
+                        "hash",
+                        "sha1",
+                        "sha256",
+                        "md5"
+                    ],
+                    "column_name": "File Hash",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.private_only",
                     "data_type": "boolean",
-                    "contains": [],
-                    "column_name": "private_only",
+                    "column_name": "Private Only",
                     "column_order": 2
                 },
                 {
                     "data_path": "action_result.parameter.wait_for_completion",
                     "data_type": "boolean",
-                    "column_name": "wait_for_completion",
+                    "column_name": "Wait For Completion",
                     "column_order": 3
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 4
+                    "column_name": "Status",
+                    "column_order": 4,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -391,6 +431,10 @@
                     "contains": [
                         "ttp"
                     ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -424,14 +468,18 @@
                     "contains": [
                         "url"
                     ],
-                    "column_name": "url",
+                    "column_name": "URL",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -462,6 +510,10 @@
                         "failed",
                         "finished"
                     ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -478,7 +530,7 @@
             "read_only": true,
             "parameters": {
                 "analysis_id": {
-                    "description": "URL analysis ID. The analysis ID is returned when submitting a URL for analysis.",
+                    "description": "URL analysis ID. The analysis ID is returned when submitting a URL for analysis",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
@@ -488,7 +540,7 @@
                     "order": 0
                 },
                 "wait_for_completion": {
-                    "description": "Whether to wait for the analysis to finish.",
+                    "description": "Whether to wait for the analysis to finish",
                     "data_type": "boolean",
                     "default": true,
                     "order": 1
@@ -501,20 +553,24 @@
                     "contains": [
                         "analysis id"
                     ],
-                    "column_name": "analysis_id",
+                    "column_name": "Analysis ID",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.wait_for_completion",
                     "data_type": "boolean",
-                    "column_name": "wait_for_completion",
+                    "column_name": "Wait For Completion",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -622,6 +678,10 @@
                     "contains": [
                         "title"
                     ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -638,15 +698,17 @@
             "read_only": true,
             "parameters": {
                 "alert_id": {
-                    "description": "Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer.",
+                    "description": "Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
+                    "primary": true,
+                    "contains": [
+                        "alert id"
+                    ],
                     "order": 0
                 },
                 "wait_for_completion": {
-                    "description": "Whether to wait for the analysis to finish.",
+                    "description": "Whether to wait for the analysis to finish",
                     "data_type": "boolean",
                     "default": true,
                     "order": 1
@@ -656,21 +718,27 @@
                 {
                     "data_path": "action_result.parameter.alert_id",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "alert_id",
+                    "contains": [
+                        "alert id"
+                    ],
+                    "column_name": "Alert ID",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.wait_for_completion",
                     "data_type": "boolean",
-                    "column_name": "wait_for_completion",
+                    "column_name": "Wait For Completion",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2
+                    "column_name": "Status",
+                    "column_order": 2,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
                 },
                 {
                     "data_path": "action_result.message",
@@ -806,6 +874,10 @@
                     "contains": [
                         "scan"
                     ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
@@ -829,7 +901,6 @@
                         "trusted",
                         "malicious"
                     ],
-                    "default": "",
                     "order": 0
                 },
                 "vault_id": {
@@ -837,16 +908,13 @@
                     "data_type": "string",
                     "primary": true,
                     "contains": [
-                        "vault id",
-                        "sha1"
+                        "vault id"
                     ],
                     "order": 1
                 },
                 "family_name": {
                     "description": "Family name",
                     "data_type": "string",
-                    "primary": false,
-                    "contains": [],
                     "order": 2
                 }
             },
@@ -854,31 +922,37 @@
                 {
                     "data_path": "action_result.parameter.index_as",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "index_as",
+                    "column_name": "Index As",
                     "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.vault_id",
                     "data_type": "string",
                     "contains": [
-                        "vault id",
-                        "sha1"
+                        "vault id"
                     ],
-                    "column_name": "vault_id",
+                    "column_name": "Vault ID",
                     "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.family_name",
                     "data_type": "string",
-                    "column_name": "family_name",
+                    "column_name": "Family Name",
                     "column_order": 2
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 3
+                    "column_name": "Status",
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -894,6 +968,10 @@
                 },
                 {
                     "data_path": "summary.data.*.index_id",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.summary",
                     "data_type": "string"
                 }
             ],
@@ -930,8 +1008,16 @@
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.message",
@@ -944,6 +1030,10 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
                 }
             ],
             "render": {
