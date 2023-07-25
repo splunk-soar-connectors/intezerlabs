@@ -17,6 +17,7 @@
     "main_module": "intezer_connector.py",
     "min_phantom_version": "5.5.0",
     "app_wizard_version": "1.0.0",
+    "fips_complaint": false,
     "configuration": {
         "intezer_api_key": {
             "description": "API key",
@@ -1042,59 +1043,19 @@
             "versions": "EQ(*)"
         }
     ],
-    "pip3_dependencies": {
-        "wheel": [
-            {
-                "module": "certifi",
-                "input_file": "wheels/py3/certifi-2023.7.22-py3-none-any.whl"
-            },
-            {
-                "module": "charset_normalizer",
-                "input_file": "wheels/py3/charset_normalizer-2.0.12-py3-none-any.whl"
-            },
-            {
-                "module": "idna",
-                "input_file": "wheels/py3/idna-3.4-py3-none-any.whl"
-            },
-            {
-                "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
-            },
-            {
-                "module": "requests",
-                "input_file": "wheels/shared/requests-2.27.1-py2.py3-none-any.whl"
-            },
-            {
-                "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.16-py2.py3-none-any.whl"
-            }
-        ]
-    },
     "pip39_dependencies": {
         "wheel": [
             {
-                "module": "certifi",
-                "input_file": "wheels/py3/certifi-2023.7.22-py3-none-any.whl"
-            },
-            {
-                "module": "charset_normalizer",
-                "input_file": "wheels/py39/charset_normalizer-3.2.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
-            },
-            {
-                "module": "idna",
-                "input_file": "wheels/py3/idna-3.4-py3-none-any.whl"
-            },
+                "module": "intezer_sdk",
+                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+            }
+        ]
+    },
+    "pip_dependencies": {
+        "wheel": [
             {
                 "module": "intezer_sdk",
                 "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
-            },
-            {
-                "module": "requests",
-                "input_file": "wheels/py3/requests-2.31.0-py3-none-any.whl"
-            },
-            {
-                "module": "urllib3",
-                "input_file": "wheels/py3/urllib3-2.0.4-py3-none-any.whl"
             }
         ]
     }
