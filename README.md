@@ -1,3 +1,37 @@
+[comment]: # "Auto-generated SOAR connector documentation"
+# Intezer
+
+Publisher: Intezer Labs  
+Connector Version: 1.0.1  
+Product Vendor: Intezer Labs  
+Product Name: Intezer  
+Product Version Supported (regex): ".\*"  
+Minimum Product Version: 5.5.0  
+
+Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows
+
+[comment]: # " File: README.md"
+[comment]: # ""
+[comment]: # "    Copyright (c) Intezer Labs, 2023"
+[comment]: # ""
+[comment]: # "    This unpublished material is proprietary to JupiterOne."
+[comment]: # "    All rights reserved. The methods and"
+[comment]: # "    techniques described herein are considered trade secrets"
+[comment]: # "    and/or confidential. Reproduction or distribution, in whole"
+[comment]: # "    or in part, is forbidden except by express written permission"
+[comment]: # "    of JupiterOne."
+[comment]: # ""
+[comment]: # "    Licensed under the Apache License, Version 2.0 (the 'License');"
+[comment]: # "    you may not use this file except in compliance with the License."
+[comment]: # "    You may obtain a copy of the License at"
+[comment]: # ""
+[comment]: # "        http://www.apache.org/licenses/LICENSE-2.0"
+[comment]: # ""
+[comment]: # "    Unless required by applicable law or agreed to in writing, software distributed under"
+[comment]: # "    the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,"
+[comment]: # "    either express or implied. See the License for the specific language governing permissions"
+[comment]: # "    and limitations under the License."
+[comment]: # ""
 # Intezer Labs
 
 Publisher: Splunk  
@@ -8,40 +42,22 @@ Product Version Supported (regex): ".\*"
 Minimum Product Version: 5.5.0
 
 ## About Intezer Splunk SOAR Connector
-Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and response of threats by integrating Intezer's technology into their Splunk workflows.
 
-[comment]: # "File: README.md"
+Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and
+response of threats by integrating Intezer's technology into their Splunk workflows.
 
-[comment]: # "Copyright (c) 2021-2023 Splunk Inc."
+[comment](# "and limitations under the License.") : # ""
 
-[comment]: # ""
+[comment](# "and limitations under the License.") : # ""
 
-[comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
+[comment](# "and limitations under the License.") : # ""
 
-[comment]: # "you may not use this file except in compliance with the License."
-
-[comment]: # "You may obtain a copy of the License at"
-
-[comment]: # ""
-
-[comment]: # "    http://www.apache.org/licenses/LICENSE-2.0"
-
-[comment]: # ""
-
-[comment]: # "Unless required by applicable law or agreed to in writing, software distributed under"
-
-[comment]: # "the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,"
-
-[comment]: # "either express or implied. See the License for the specific language governing permissions"
-
-[comment]: # "and limitations under the License."
-
-[comment]: # ""
+[comment](# "and limitations under the License.") : # ""
 
 ## Port Information
 
-The app uses HTTP/ HTTPS protocol for communicating with the Intezer server. Below are the
-default ports used by Splunk SOAR.
+The app uses HTTP/ HTTPS protocol for communicating with the Intezer server. Below are the default
+ports used by Splunk SOAR.
 
 | Service Name | Transport Protocol | Port |
 |--------------|--------------------|------|
@@ -56,15 +72,19 @@ default ports used by Splunk SOAR.
 
 ### Supported Actions
 
- - [test connectivity](#action-test-connectivity) - Test connection to Intezer.
- - [detonate_file](#action-detonate-file) - Analyze a file from Splunk vault with Intezer.
- - [detonate_hash](#action-detonate-hash) - Analyze a file hash (SHA1, SHA256, or MD5) with Intezer.
- - [get_file_report](#action-get-file-report) - Get a file analysis report based on an analysis ID or a file hash.
- - [detonate_url](#action-detonate-url) - Analyze a suspicious URL with Intezer.
- - [get_url_report](#action-get-url-report) - Get a URL analysis report based on a URL analysis ID.
- - [get_alert](#action-get-alert) - Get an ingested alert triage and response information using alert ID.
- - [index_file](#action-index-file) - Index the file's genes into the organizational database.
- - [unset_index_file](#action-unset-index-file) - Unset file's indexing.
+-   [test connectivity](#action-test-connectivity) - Test connection to Intezer.
+-   [detonate_file](#action-detonate-file) - Analyze a file from Splunk vault with Intezer.
+-   [detonate_hash](#action-detonate-hash) - Analyze a file hash (SHA1, SHA256, or MD5) with
+    Intezer.
+-   [get_file_report](#action-get-file-report) - Get a file analysis report based on an analysis ID
+    or a file hash.
+-   [detonate_url](#action-detonate-url) - Analyze a suspicious URL with Intezer.
+-   [get_url_report](#action-get-url-report) - Get a URL analysis report based on a URL analysis ID.
+-   [get_alert](#action-get-alert) - Get an ingested alert triage and response information using
+    alert ID.
+-   [index_file](#action-index-file) - Index the file's genes into the organizational database.
+-   [unset_index_file](#action-unset-index-file) - Unset file's indexing.
+-   [get_file](#action-get-file) - Download a file from Intezer and store it in the vault.
 
 ## action: 'test connectivity'
 
@@ -92,18 +112,18 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER    | REQUIRED | DESCRIPTION     | TYPE   | CONTAINS   |
-|--------------|----------|-----------------|--------|------------| 
-| **vault_id** | required | File's vault ID | string | `vault id` |  
+| PARAMETER    | REQUIRED | DESCRIPTION     | TYPE   | CONTAINS                  |
+|--------------|----------|-----------------|--------|---------------------------|
+| **vault_id** | required | File's vault ID | string | `        vault id       ` |
 
 #### Action Output
 
-| DATA PATH       | TYPE   | CONTAINS                | EXAMPLE VALUES                                       |
-|-----------------|--------|-------------------------|------------------------------------------------------|
-| analysis_id     | string | Intezer analysis ID     |                                                      |
-| analysis_status | string | Intezer analysis status | `created` `in_progress` `queued` `failed` `finished` |
-| analysis_type   | string | File Analysis           | `file`                                               |
-| identifier      | string | vault id requested      | `vault id`                                           |
+| DATA PATH       | TYPE   | CONTAINS                | EXAMPLE VALUES                                                                                                                  |
+|-----------------|--------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| analysis_id     | string | Intezer analysis ID     |                                                                                                                                 |
+| analysis_status | string | Intezer analysis status | `        created       ` `        in_progress       ` `        queued       ` `        failed       ` `        finished       ` |
+| analysis_type   | string | File Analysis           | `        file       `                                                                                                           |
+| identifier      | string | vault id requested      | `        vault id       `                                                                                                       |
 
 ## action: 'detonate hash'
 
@@ -114,18 +134,18 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER     | REQUIRED | DESCRIPTION                   | TYPE   | CONTAINS                        |
-|---------------|----------|-------------------------------|--------|---------------------------------| 
-| **file_hash** | required | Analyze hash file via Intezer | string | `hash`  `sha256`  `sha1`  `md5` |  
+| PARAMETER     | REQUIRED | DESCRIPTION                   | TYPE   | CONTAINS                                                                                 |
+|---------------|----------|-------------------------------|--------|------------------------------------------------------------------------------------------|
+| **file_hash** | required | Analyze hash file via Intezer | string | `        hash       ` `        sha256       ` `        sha1       ` `        md5       ` |
 
 #### Action Output
 
-| DATA PATH       | TYPE   | CONTAINS                | EXAMPLE VALUES                                       |
-|-----------------|--------|-------------------------|------------------------------------------------------|
-| analysis_id     | string | Intezer analysis ID     |                                                      |
-| analysis_status | string | Intezer analysis status | `created` `in_progress` `queued` `failed` `finished` |
-| analysis_type   | string | File Analysis           | `file`                                               |
-| identifier      | string | hash requested          |                                                      |
+| DATA PATH       | TYPE   | CONTAINS                | EXAMPLE VALUES                                                                                                                  |
+|-----------------|--------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| analysis_id     | string | Intezer analysis ID     |                                                                                                                                 |
+| analysis_status | string | Intezer analysis status | `        created       ` `        in_progress       ` `        queued       ` `        failed       ` `        finished       ` |
+| analysis_type   | string | File Analysis           | `        file       `                                                                                                           |
+| identifier      | string | hash requested          |                                                                                                                                 |
 
 ## action: 'get file report'
 
@@ -138,37 +158,41 @@ Read only: **True**
 
 Provide either analysis_id or file_hash.
 
-| PARAMETER       | REQUIRED | DESCRIPTION                                                                                 | TYPE   | CONTAINS                        |
-|-----------------|----------|---------------------------------------------------------------------------------------------|--------|---------------------------------| 
-| **analysis_id** | optional | File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis | string |                                 |  
-| **file_hash**   | optional | Hash of the desired report                                                                  | string | `hash`  `sha256`  `sha1`  `md5` |  
+| PARAMETER       | REQUIRED | DESCRIPTION                                                                                 | TYPE   | CONTAINS                                                                                 |
+|-----------------|----------|---------------------------------------------------------------------------------------------|--------|------------------------------------------------------------------------------------------|
+| **analysis_id** | optional | File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis | string |                                                                                          |
+| **file_hash**   | optional | Hash of the desired report                                                                  | string | `        hash       ` `        sha256       ` `        sha1       ` `        md5       ` |
 
 #### Action Output
 
 For more details take a look here:
 
-- [get analysis details](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id/get)
+-   [get analysis
+    details](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id/get)
 
-- [iocs](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--iocs/get)
+-   [iocs](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--iocs/get)
 
-- [dynamic ttps](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--dynamic-ttps/get)
+-   [dynamic
+    ttps](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--dynamic-ttps/get)
 
-- [detect and hunt](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--detect/get)
+-   [detect and
+    hunt](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--detect/get)
 
-- [code reuse](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--sub-analyses-root-code-reuse/get)
+-   [code
+    reuse](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--sub-analyses-root-code-reuse/get)
 
-- [metadata](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--sub-analyses-root-metadata/get)
+-   [metadata](https://analyze.intezer.com/api-docs.html#/paths/analyses-analysis_id--sub-analyses-root-metadata/get)
 
-| DATA PATH                        | TYPE       | CONTAINS                | EXAMPLE VALUES                                       |
-|----------------------------------|------------|-------------------------|------------------------------------------------------|
-| analysis_status                  | string     | Intezer analysis status | `created` `in_progress` `queued` `failed` `finished` |
-| analysis_type                    | string     | File Analysis           | `file`                                               |
-| analysis_id                      | string     | Intezer analysis ID     |                                                      | 
-| analysis_content.analysis        | dictionary | analysis report         |                                                      |
-| analysis_content.iocs            | dictionary | iocs report             |                                                      |
-| analysis_content.ttps            | dictionary | ttps report             |                                                      |
-| analysis_content.metadata        | dictionary | metadata report         |                                                      |
-| analysis_content.root-code-reuse | dictionary | root-code-reuse report  |                                                      |
+| DATA PATH                        | TYPE       | CONTAINS                | EXAMPLE VALUES                                                                                                                  |
+|----------------------------------|------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| analysis_status                  | string     | Intezer analysis status | `        created       ` `        in_progress       ` `        queued       ` `        failed       ` `        finished       ` |
+| analysis_type                    | string     | File Analysis           | `        file       `                                                                                                           |
+| analysis_id                      | string     | Intezer analysis ID     |                                                                                                                                 |
+| analysis_content.analysis        | dictionary | analysis report         |                                                                                                                                 |
+| analysis_content.iocs            | dictionary | iocs report             |                                                                                                                                 |
+| analysis_content.ttps            | dictionary | ttps report             |                                                                                                                                 |
+| analysis_content.metadata        | dictionary | metadata report         |                                                                                                                                 |
+| analysis_content.root-code-reuse | dictionary | root-code-reuse report  |                                                                                                                                 |
 
 ## action: 'detonate url'
 
@@ -179,18 +203,18 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER | REQUIRED | DESCRIPTION    | TYPE   | CONTAINS    |
-|-----------|----------|----------------|--------|-------------| 
-| **url**   | required | URL to analyze | string | `valid url` |  
+| PARAMETER | REQUIRED | DESCRIPTION    | TYPE   | CONTAINS                   |
+|-----------|----------|----------------|--------|----------------------------|
+| **url**   | required | URL to analyze | string | `        valid url       ` |
 
 #### Action Output
 
-| DATA PATH       | TYPE   | CONTAINS                | EXAMPLE VALUES                                       |
-|-----------------|--------|-------------------------|------------------------------------------------------|
-| analysis_id     | string | Intezer analysis ID     |                                                      |
-| analysis_status | string | Intezer analysis status | `created` `in_progress` `queued` `failed` `finished` |
-| analysis_type   | string | URL Analysis            | `url`                                                |
-| identifier      | string | url requested           |                                                      |
+| DATA PATH       | TYPE   | CONTAINS                | EXAMPLE VALUES                                                                                                                  |
+|-----------------|--------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| analysis_id     | string | Intezer analysis ID     |                                                                                                                                 |
+| analysis_status | string | Intezer analysis status | `        created       ` `        in_progress       ` `        queued       ` `        failed       ` `        finished       ` |
+| analysis_type   | string | URL Analysis            | `        url       `                                                                                                            |
+| identifier      | string | url requested           |                                                                                                                                 |
 
 ## action: 'get url report'
 
@@ -202,21 +226,21 @@ Read only: **True**
 #### Action Parameters
 
 | PARAMETER       | REQUIRED | DESCRIPTION                                                                     | TYPE   | CONTAINS |
-|-----------------|----------|---------------------------------------------------------------------------------|--------|----------| 
-| **analysis_id** | required | URL analysis ID. The analysis ID is returned when submitting a URL for analysis | string |          |  
+|-----------------|----------|---------------------------------------------------------------------------------|--------|----------|
+| **analysis_id** | required | URL analysis ID. The analysis ID is returned when submitting a URL for analysis | string |          |
 
 #### Action Output
 
 For more details take a look here:
 
-- [url-analysis-id](https://analyze.intezer.com/api-docs.html#/paths/url-analysis_id/get)
+-   [url-analysis-id](https://analyze.intezer.com/api-docs.html#/paths/url-analysis_id/get)
 
-| DATA PATH                 | TYPE       | CONTAINS                | EXAMPLE VALUES                                       |
-|---------------------------|------------|-------------------------|------------------------------------------------------|
-| analysis_status           | string     | Intezer analysis status | `created` `in_progress` `queued` `failed` `finished` |
-| analysis_type             | string     | URL Analysis            | `url`                                                |
-| analysis_id               | string     | Intezer analysis ID     |                                                      |
-| analysis_content.analysis | dictionary | analysis report         |                                                      |
+| DATA PATH                 | TYPE       | CONTAINS                | EXAMPLE VALUES                                                                                                                  |
+|---------------------------|------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| analysis_status           | string     | Intezer analysis status | `        created       ` `        in_progress       ` `        queued       ` `        failed       ` `        finished       ` |
+| analysis_type             | string     | URL Analysis            | `        url       `                                                                                                            |
+| analysis_id               | string     | Intezer analysis ID     |                                                                                                                                 |
+| analysis_content.analysis | dictionary | analysis report         |                                                                                                                                 |
 
 ## action: 'get alert'
 
@@ -228,15 +252,15 @@ Read only: **True**
 #### Action Parameters
 
 | PARAMETER       | REQUIRED | DESCRIPTION                                                                                            | TYPE   | CONTAINS |
-|-----------------|----------|--------------------------------------------------------------------------------------------------------|--------|----------| 
-| **alert_id**    | required | Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer | string |          |  
-| **environment** | required | The environment to get the report about                                                                | string |          |  
+|-----------------|----------|--------------------------------------------------------------------------------------------------------|--------|----------|
+| **alert_id**    | required | Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer | string |          |
+| **environment** | required | The environment to get the report about                                                                | string |          |
 
 #### Action Output
 
 For more details take a look here:
 
-- [get alert](https://analyze.intezer.com/api-docs.html#/paths/alerts-search/get)
+-   [get alert](https://analyze.intezer.com/api-docs.html#/paths/alerts-search/get)
 
 ## action: 'index file'
 
@@ -247,12 +271,12 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER       | REQUIRED | DESCRIPTION                   | TYPE   | CONTAINS                        |
-|-----------------|----------|-------------------------------|--------|---------------------------------| 
-| **index_as**    | required | Index as trusted or malicious | string | `trusted`  `malicious`          |  
-| **file_hash**   | optional | hash to index                 | string | `hash`  `sha256`  `sha1`  `md5` |  
-| **vault_id**    | optional | File's vault ID               | string | `vault id`                      |  
-| **family_name** | optional | family name to index as       | string |                                 |  
+| PARAMETER       | REQUIRED | DESCRIPTION                   | TYPE   | CONTAINS                                                                                 |
+|-----------------|----------|-------------------------------|--------|------------------------------------------------------------------------------------------|
+| **index_as**    | required | Index as trusted or malicious | string | `        trusted       ` `        malicious       `                                      |
+| **file_hash**   | optional | hash to index                 | string | `        hash       ` `        sha256       ` `        sha1       ` `        md5       ` |
+| **vault_id**    | optional | File's vault ID               | string | `        vault id       `                                                                |
+| **family_name** | optional | family name to index as       | string |                                                                                          |
 
 #### Action Output
 
@@ -269,10 +293,298 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER     | REQUIRED | DESCRIPTION                     | TYPE   | CONTAINS                        |
-|---------------|----------|---------------------------------|--------|---------------------------------| 
-| **file_hash** | required | Hash file to unset the indexing | string | `hash`  `sha256`  `sha1`  `md5` |  
+| PARAMETER     | REQUIRED | DESCRIPTION                     | TYPE   | CONTAINS                                                                                 |
+|---------------|----------|---------------------------------|--------|------------------------------------------------------------------------------------------|
+| **file_hash** | required | Hash file to unset the indexing | string | `        hash       ` `        sha256       ` `        sha1       ` `        md5       ` |
 
 #### Action Output
 
 No output
+
+
+### Configuration Variables
+The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a Intezer asset in SOAR.
+
+VARIABLE | REQUIRED | TYPE | DESCRIPTION
+-------- | -------- | ---- | -----------
+**intezer_api_key** |  required  | password | API key
+
+### Supported Actions  
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration  
+[detonate file](#action-detonate-file) - Analyze a file from Splunk vault with Intezer  
+[detonate hash](#action-detonate-hash) - Analyze a file hash (SHA1, SHA256, or MD5) with Intezer  
+[get file report](#action-get-file-report) - Get a file analysis report based on an analysis ID or a file hash  
+[detonate url](#action-detonate-url) - Analyze a suspicious URL with Intezer  
+[get url report](#action-get-url-report) - Get a URL analysis report based on a URL analysis ID  
+[get alert](#action-get-alert) - Get an ingested alert triage and response information using alert ID  
+[index file](#action-index-file) - Index the file's genes into the organizational database  
+[unset index file](#action-unset-index-file) - Unset file's indexing  
+
+## action: 'test connectivity'
+Validate the asset configuration for connectivity using supplied configuration
+
+Type: **test**  
+Read only: **True**
+
+Test connection with Intezer.
+
+#### Action Parameters
+No parameters are required for this action
+
+#### Action Output
+No Output  
+
+## action: 'detonate file'
+Analyze a file from Splunk vault with Intezer
+
+Type: **generic**  
+Read only: **False**
+
+Analyze a file from Splunk Vault. The action returns the analysis ID and status.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**vault_id** |  required  | File's vault ID | string |  `vault id` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.vault_id | string |  `vault id`  |  
+action_result.status | string |  |   success  failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.data.\*.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.analysis_status | string |  |   created  in_progress  queued  failed  finished 
+action_result.data.\*.analysis_type | string |  |   file 
+action_result.data.\*.identifier | string |  `vault id`  |  
+action_result.summary | string |  |    
+
+## action: 'detonate hash'
+Analyze a file hash (SHA1, SHA256, or MD5) with Intezer
+
+Type: **generic**  
+Read only: **False**
+
+Analyze a hash from Splunk Vault. The action returns the analysis ID and status.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**file_hash** |  required  | File hash (SHA1, SHA256, or MD5) | string |  `hash`  `sha1`  `sha256`  `md5` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.file_hash | string |  `hash`  `sha1`  `sha256`  `md5`  |  
+action_result.status | string |  |   success  failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.data.\*.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.analysis_status | string |  |   created  in_progress  queued  failed  finished 
+action_result.data.\*.analysis_type | string |  |   file 
+action_result.data.\*.identifier | string |  `hash`  `sha1`  `sha256`  `md5`  |  
+action_result.summary | string |  |    
+
+## action: 'get file report'
+Get a file analysis report based on an analysis ID or a file hash
+
+Type: **investigate**  
+Read only: **True**
+
+Get a file analysis report based on an analysis ID or a file hash.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**analysis_id** |  optional  | File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis | string |  `analysis id` 
+**file_hash** |  optional  | File's hash (SHA1, SHA256, MD5) | string |  `hash`  `sha1`  `sha256`  `md5` 
+**private_only** |  optional  | The "private_only" parameter, used when retrieving analysis reports by file hash, determines database access: "false" (default) uses both public and private databases, consuming additional quota for first-time public access; "true" uses only your private database, conserving quota | boolean | 
+**wait_for_completion** |  optional  | Whether to wait for the analysis to finish | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.analysis_id | string |  `analysis id`  |  
+action_result.parameter.file_hash | string |  `hash`  `sha1`  `sha256`  `md5`  |  
+action_result.parameter.private_only | boolean |  |  
+action_result.parameter.wait_for_completion | boolean |  |  
+action_result.status | string |  |   success  failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.data.\*.analysis_type | string |  `file`  |  
+action_result.data.\*.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.analysis_status | string |  |   created  in_progress  queued  failed  finished 
+action_result.data.\*.analysis_content.analysis.analysis_time | string |  `time utc format`  |  
+action_result.data.\*.analysis_content.analysis.analysis_url | string |  `analysis url`  |  
+action_result.data.\*.analysis_content.analysis.file_name | string |  `file name`  |  
+action_result.data.\*.analysis_content.analysis.is_private | boolean |  `is private analysis`  |  
+action_result.data.\*.analysis_content.analysis.sha256 | string |  `sha256`  |  
+action_result.data.\*.analysis_content.analysis.sub_verdict | string |  |   file_based  memory_threat  suspicious_powershell_command  blocklisted_software  custom_rule  suspicious_script  suspicious_behavior  testing_activity  custom 
+action_result.data.\*.analysis_content.analysis.iocs.files.\*.sha256 | string |  `sha256`  |  
+action_result.data.\*.analysis_content.analysis.iocs.network.\*.ip | string |  `ip`  |  
+action_result.data.\*.analysis_content.analysis.iocs.network.\*.url | string |  `url`  |  
+action_result.data.\*.analysis_content.analysis.ttps.\*.ttp.ttp | string |  `ttp`  |  
+action_result.summary | string |  |    
+
+## action: 'detonate url'
+Analyze a suspicious URL with Intezer
+
+Type: **generic**  
+Read only: **False**
+
+Analyze a suspicious URL with Intezer.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**url** |  required  | URL to analyze | string |  `url` 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.url | string |  `url`  |  
+action_result.status | string |  |   success  failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.data.\*.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.analysis_status | string |  |   created  in_progress  queued  failed  finished 
+action_result.summary | string |  |    
+
+## action: 'get url report'
+Get a URL analysis report based on a URL analysis ID
+
+Type: **investigate**  
+Read only: **True**
+
+Get a URL analysis report based on a URL analysis ID.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**analysis_id** |  required  | URL analysis ID. The analysis ID is returned when submitting a URL for analysis | string |  `analysis id` 
+**wait_for_completion** |  optional  | Whether to wait for the analysis to finish | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.analysis_id | string |  `analysis id`  |  
+action_result.parameter.wait_for_completion | boolean |  |  
+action_result.status | string |  |   success  failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.data.\*.analysis_type | string |  `url`  |  
+action_result.data.\*.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.analysis_status | string |  |   created  in_progress  queued  failed  finished 
+action_result.data.\*.analysis_content.analysis.downloaded_file.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.analysis_content.analysis.downloaded_file.sha256 | string |  `sha256`  |  
+action_result.data.\*.analysis_content.analysis.domain_info.domain_name | string |  `domain name`  |  
+action_result.data.\*.analysis_content.analysis.indicators.\*.text | string |  `indicator`  |  
+action_result.data.\*.analysis_content.analysis.ip | string |  `ip`  |  
+action_result.data.\*.analysis_content.analysis.scanned_url | string |  `url`  |  
+action_result.data.\*.analysis_content.analysis.submitted_url | string |  `ip`  |  
+action_result.data.\*.analysis_content.analysis.summary.verdict_type | string |  `verdict`  |  
+action_result.data.\*.analysis_content.analysis.summary.verdict_name | string |  `verdict name`  |  
+action_result.data.\*.analysis_content.analysis.summary.title | string |  `title`  |  
+action_result.summary | string |  |    
+
+## action: 'get alert'
+Get an ingested alert triage and response information using alert ID
+
+Type: **investigate**  
+Read only: **True**
+
+Get an ingested alert triage and response information using alert ID.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**alert_id** |  required  | Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer | string |  `alert id` 
+**wait_for_completion** |  optional  | Whether to wait for the analysis to finish | boolean | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.alert_id | string |  `alert id`  |  
+action_result.parameter.wait_for_completion | boolean |  |  
+action_result.status | string |  |   success  failed 
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.data.\*.alert_url | string |  `url`  |  
+action_result.data.\*.source | string |  `source`  |  
+action_result.data.\*.alert.alert_id | string |  `alert id`  |  
+action_result.data.\*.alert.alert_title | string |  `alert title`  |  
+action_result.data.\*.alert.severity | string |  `alert severity`  |  
+action_result.data.\*.alert.creation_time | string |  `time in utc`  |  
+action_result.data.\*.alert.is_mitigated | boolean |  |  
+action_result.data.\*.alert.device.hostname | string |  `hostname`  |  
+action_result.data.\*.alert.device.os_type | string |  `os type`  |  
+action_result.data.\*.triage_result.alert_verdict | string |  `verdict`  |  
+action_result.data.\*.triage_result.risk_category | string |  `risk category`  |  
+action_result.data.\*.triage_result.risk_level | string |  `risk level`  |  
+action_result.data.\*.triage_result.threat_name | string |  `threat name`  |  
+action_result.data.\*.scans.\*.file_analysis.analysis_id | string |  `analysis id`  |  
+action_result.data.\*.scans.\*.file_analysis.verdict | string |  `verdict`  |  
+action_result.data.\*.scans.file_analysis.sha256 | string |  `sha256`  |  
+action_result.data.\*.response.status | string |  `response status`  |  
+action_result.data.\*.scans | string |  `scan`  |  
+action_result.summary | string |  |    
+
+## action: 'index file'
+Index the file's genes into the organizational database
+
+Type: **correct**  
+Read only: **False**
+
+Index the file's genes into the organizational database.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**index_as** |  required  | "trusted" or "malicious" | string | 
+**vault_id** |  optional  | File's vault ID | string |  `vault id` 
+**family_name** |  optional  | Family name | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.index_as | string |  |  
+action_result.parameter.vault_id | string |  `vault id`  |  
+action_result.parameter.family_name | string |  |  
+action_result.status | string |  |   success  failed 
+action_result.data | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+summary.data.\*.index_id | string |  |  
+action_result.summary | string |  |    
+
+## action: 'unset index file'
+Unset file's indexing
+
+Type: **correct**  
+Read only: **False**
+
+Unset file's indexing.
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**file_hash** |  required  | File's hash (SHA1, SHA256, MD5) | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.parameter.file_hash | string |  |  
+action_result.status | string |  |   success  failed 
+action_result.data | string |  |  
+action_result.message | string |  |  
+summary.total_objects | numeric |  |  
+summary.total_objects_successful | numeric |  |  
+action_result.summary | string |  |  
