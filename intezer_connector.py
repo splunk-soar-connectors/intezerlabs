@@ -24,17 +24,18 @@ import json
 import os
 import shutil
 import uuid
+from io import BytesIO
 
 import requests
 from intezer_sdk.alerts import Alert
 from intezer_sdk.analysis import FileAnalysis, UrlAnalysis
 from intezer_sdk.api import get_global_api, set_global_api
 from intezer_sdk.consts import AnalysisStatusCode, IndexType
-from intezer_sdk.errors import AnalysisIsAlreadyRunningError, AnalysisIsStillRunningError, HashDoesNotExistError, IntezerError
+from intezer_sdk.errors import AnalysisIsAlreadyRunningError, AnalysisIsStillRunningError, HashDoesNotExistError, IntezerError, InvalidAlertMappingError
 from intezer_sdk.index import Index
 from requests.exceptions import HTTPError
 
-from intezer_consts import INTEZER_JSON_APIKEY
+from intezer_consts import REQUESTER, INTEZER_JSON_APIKEY
 
 try:
     import phantom.app as phantom
@@ -59,6 +60,8 @@ class IntezerConnector(BaseConnector):
             'detonate_url': self.detonate_url,
             'get_url_report': self.get_url_report,
             'get_alert': self.get_alert,
+            'submit_alert': self.submit_alert,
+            'submit_suspicious_email': self.submit_suspicious_email,
             'index_file': self.index_file,
             'unset_index_file': self.unset_index_file,
         }
@@ -76,7 +79,7 @@ class IntezerConnector(BaseConnector):
         else:
             self.intezer_action_result.add_data({'is_available': True})
             self.intezer_action_result.update_summary({'is_available': True})
-        self.debug_print('Test connectivity result: {}'.format(is_available))
+        self.debug_print(f'Test connectivity result: {is_available}')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def detonate_url(self, url: str, **kwargs):
@@ -85,10 +88,10 @@ class IntezerConnector(BaseConnector):
 
         :param url: The url to analyze.
         """
-        self.debug_print('Detonating url: {}'.format(url))
+        self.debug_print(f'Detonating url: {url}')
         url_analysis = UrlAnalysis(url=url)
         try:
-            url_analysis.send(requester='splunk_soar')
+            url_analysis.send(requester=REQUESTER)
         except IntezerError as e:
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'URL analysis failed - {e}')
         result = {'analysis_id': url_analysis.analysis_id,
@@ -98,7 +101,7 @@ class IntezerConnector(BaseConnector):
 
         self.intezer_action_result.add_data(result)
         self.intezer_action_result.update_summary(result)
-        self.debug_print('Detonate url result: {}'.format(result))
+        self.debug_print(f'Detonate url result: {result}')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def detonate_hash(self, file_hash: str, **kwargs):
@@ -107,10 +110,10 @@ class IntezerConnector(BaseConnector):
 
         :param file_hash: hash to analyze.
         """
-        self.debug_print('Detonating hash: {}'.format(file_hash))
+        self.debug_print(f'Detonating hash: {file_hash}')
         file_analysis = FileAnalysis(file_hash=file_hash)
         try:
-            file_analysis.send(requester='splunk_soar')
+            file_analysis.send(requester=REQUESTER)
         except IntezerError as e:
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'File analysis failed - {e}')
         result = {'analysis_id': file_analysis.analysis_id,
@@ -120,22 +123,26 @@ class IntezerConnector(BaseConnector):
         self.intezer_action_result.add_data(result)
         self.intezer_action_result.update_summary(result)
 
-        self.debug_print('Detonate hash result: {}'.format(result))
+        self.debug_print(f'Detonate hash result: {result}')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
-    def detonate_file(self, vault_id: str, **kwargs):
+    def detonate_file(self, vault_id: str, related_alert_id: str = '', **kwargs):
         """
         Detonate a file.
 
         :param vault_id: The vault id of the file to analyze.
+        :param related_alert_id: The alert id related to the file.
         """
-        self.send_progress('Detonating file: {}'.format(vault_id))
+        self.send_progress(f'Detonating file: {vault_id}')
         file_path, status = self._locate_file_path(vault_id)
         if status != phantom.APP_SUCCESS:
             return self.intezer_action_result.set_status(status)
         file_analysis = FileAnalysis(file_path=file_path)
+        params = {'requester': REQUESTER}
+        if related_alert_id:
+            params['related_alert_ids'] = [related_alert_id]
         try:
-            file_analysis.send(requester='splunk_soar')
+            file_analysis.send(**params)
         except IntezerError as e:
             self.send_progress(f'File analysis failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'File analysis failed - {e}')
@@ -145,7 +152,7 @@ class IntezerConnector(BaseConnector):
                   'identifier': vault_id}
         self.intezer_action_result.add_data(result)
         self.intezer_action_result.update_summary(result)
-        self.send_progress('Detonate file result: {}'.format(result))
+        self.send_progress(f'Detonate file result: {result}')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def index_file(self, index_as: str, sha256: str, family_name: str = None, **kwargs):
@@ -156,7 +163,7 @@ class IntezerConnector(BaseConnector):
         :param sha256: The hash of the file to index.
         :param family_name: The family name of the file to index.
         """
-        self.send_progress('Indexing file: {}'.format(sha256))
+        self.send_progress(f'Indexing file: {sha256}')
         index_as = IndexType.from_str(index_as)
         index = Index(index_as=index_as,
                       sha256=sha256,
@@ -168,7 +175,7 @@ class IntezerConnector(BaseConnector):
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Index file failed - {e}')
         self.intezer_action_result.add_data({'index_id': index.index_id})
         self.intezer_action_result.update_summary({'index_id': index.index_id})
-        self.send_progress('Index file result: {}'.format(index.index_id))
+        self.send_progress(f'Index file result: {index.index_id}')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def unset_index_file(self, file_hash: str, **kwargs):
@@ -177,7 +184,7 @@ class IntezerConnector(BaseConnector):
 
         :param file_hash: The hash of the file to unset indexing.
         """
-        self.send_progress('Unset indexing of file: {}'.format(file_hash))
+        self.send_progress(f'Unset indexing of file: {file_hash}')
         index = Index(index_as=IndexType.TRUSTED,
                       sha256=file_hash)
         try:
@@ -185,7 +192,7 @@ class IntezerConnector(BaseConnector):
         except IntezerError as e:
             self.send_progress(f'Unset index file failed - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Unset index file failed - {e}')
-        self.send_progress('Unset index file result: {}'.format(index.index_id))
+        self.send_progress(f'Unset index file result: {index.index_id}')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def get_file_report(self, analysis_id: str = None, file_hash: str = None, private_only: bool = False,
@@ -209,14 +216,14 @@ class IntezerConnector(BaseConnector):
                 try:
                     file_analysis = FileAnalysis.from_latest_hash_analysis(file_hash,
                                                                            private_only=private_only,
-                                                                           requester='splunk_soar')
+                                                                           requester=REQUESTER)
                 except HTTPError:
                     pass
 
                 if not file_analysis:
                     file_analysis = FileAnalysis(file_hash=file_hash)
                     try:
-                        file_analysis.send(requester='splunk_soar')
+                        file_analysis.send(requester=REQUESTER)
                     except AnalysisIsAlreadyRunningError as ex:
                         file_analysis = FileAnalysis.from_analysis_id(ex.analysis_id)
                     except HashDoesNotExistError:
@@ -313,6 +320,65 @@ class IntezerConnector(BaseConnector):
         self.intezer_action_result.add_data(alert_details)
         self.intezer_action_result.update_summary(alert_details)
         self.send_progress('Alert finished')
+        return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
+
+    def submit_alert(self, source: str, raw_alert: str, alert_mapping: str, **kwargs):
+        """
+        Submit an alert to Intezer.
+
+        :param source: Where the alert came from.
+        :param raw_alert: The alert raw data in JSON format.
+        :param alert_mapping: The mapping to use for the alert in JSON formant.
+        """
+        try:
+            alert_details = json.loads(raw_alert)
+            mapping_details = json.loads(alert_mapping)
+        except Exception as e:
+            return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Invalid json - {e}')
+        self.send_progress(f'Submitting alert')
+        try:
+            alert = Alert.send(raw_alert=alert_details,
+                               source=source,
+                               alert_mapping=mapping_details,
+                               api=self.api,
+                               alert_sender=REQUESTER)
+        except InvalidAlertMappingError as e:
+            self.send_progress(f'Invalid alert mapping - {e}')
+            return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Invalid alert mapping - {e}')
+        except IntezerError as e:
+            self.send_progress(f'Alert submission failed - {e}')
+            return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Alert submission failed - {e}')
+
+        self.intezer_action_result.add_data({'alert_id': alert.alert_id})
+        self.intezer_action_result.update_summary({'alert_id': alert.alert_id})
+        self.send_progress(f'Alert {alert.alert_id} submitted successfully')
+        return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
+
+    def submit_suspicious_email(self, vault_id: str, **kwargs):
+        """
+        Submit a suspicious email to Intezer.
+
+        :param vault_id: The vault id of the email to submit.
+        """
+        file_path, status = self._locate_file_path(vault_id)
+        if status != phantom.APP_SUCCESS:
+            self.send_progress(f'Failed - Email file not found - {status}')
+            return self.intezer_action_result.set_status(status)
+        self.send_progress(f'Submitting suspicious email {vault_id}')
+        try:
+            with open(file_path, 'rb') as f:
+                file_content = BytesIO(f.read())
+                alert = Alert.send_phishing_email(raw_email=file_content, api=self.api, alert_sender=REQUESTER)
+        except IOError as e:
+            self.send_progress(f'Failed - Email file not found - {e}')
+            return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Email file not found - {e}')
+        except IntezerError as e:
+            self.send_progress(f'Alert submission failed - {e}')
+            return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Alert submission failed - {e}')
+
+        self.intezer_action_result.add_data({'alert_id': alert.alert_id})
+        self.intezer_action_result.update_summary({'alert_id': alert.alert_id})
+        self.send_progress(f'Suspicious email {alert.alert_id} submitted successfully')
         return self.intezer_action_result.set_status(phantom.APP_SUCCESS)
 
     def initialize(self, **kwargs):

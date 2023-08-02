@@ -11,7 +11,7 @@
     "product_version_regex": ".*",
     "publisher": "Intezer Labs",
     "license": "Copyright (c) Intezer Labs, 2023",
-    "app_version": "1.0.1",
+    "app_version": "1.1.0",
     "utctime_updated": "2023-07-17T14:43:38.088340Z",
     "package_name": "phantom_intezer",
     "main_module": "intezer_connector.py",
@@ -55,6 +55,15 @@
                         "vault id"
                     ],
                     "order": 0
+                },
+                "related_alert_id": {
+                    "description": "The alert ID that the file is related to",
+                    "data_type": "string",
+                    "required": false,
+                    "contains": [
+                        "alert id"
+                    ],
+                    "order": 1
                 }
             },
             "output": [
@@ -66,6 +75,15 @@
                     ],
                     "column_name": "Vault ID",
                     "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.related_alert_id",
+                    "data_type": "string",
+                    "contains": [
+                        "alert id"
+                    ],
+                    "column_name": "Related Alert ID",
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.status",
@@ -699,7 +717,7 @@
             "read_only": true,
             "parameters": {
                 "alert_id": {
-                    "description": "Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer",
+                    "description": "The alert id to query",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
@@ -887,6 +905,156 @@
             "versions": "EQ(*)"
         },
         {
+            "action": "submit_alert",
+            "identifier": "submit_alert",
+            "description": "Submit a new alert, including the raw alert information, to Intezer for processing",
+            "verbose": "Submit a new alert, including the raw alert information, to Intezer for processing",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "source": {
+                    "description": "Where the alert came from",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 1,
+                    "name": "source"
+                },
+                "raw_alert": {
+                    "description": "The alert raw data in JSON format",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 2,
+                    "name": "raw_alert"
+                },
+                "alert_mapping": {
+                    "description": "The mapping to use for the alert in JSON formant",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 3,
+                    "name": "alert_mapping"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.source",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "source",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.raw_alert",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "raw_alert",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.parameter.alert_mapping",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "alert_mapping",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.data.*.alert_id",
+                    "data_type": "string"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "submit_suspicious_email",
+            "identifier": "submit_suspicious_email",
+            "description": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing",
+            "verbose": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "vault_id": {
+                    "description": "The vault id of the email to submit",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "vault_id",
+                    "id": 1,
+                    "param_name": "vault_id"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.vault_id",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "vault_id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.data.*.alert_id",
+                    "data_type": "string"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
             "action": "index file",
             "identifier": "index_file",
             "description": "Index the file's genes into the organizational database",
@@ -1047,7 +1215,7 @@
         "wheel": [
             {
                 "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+                "input_file": "wheels/py3/intezer_sdk-1.18.4-py3-none-any.whl"
             }
         ]
     },
@@ -1055,7 +1223,7 @@
         "wheel": [
             {
                 "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+                "input_file": "wheels/py3/intezer_sdk-1.18.4-py3-none-any.whl"
             }
         ]
     }

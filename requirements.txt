@@ -1,1 +1,1 @@
-intezer-sdk==1.18
+intezer-sdk==1.18.4
