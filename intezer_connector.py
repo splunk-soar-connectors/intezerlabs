@@ -31,11 +31,12 @@ from intezer_sdk.alerts import Alert
 from intezer_sdk.analysis import FileAnalysis, UrlAnalysis
 from intezer_sdk.api import get_global_api, set_global_api
 from intezer_sdk.consts import AnalysisStatusCode, IndexType
-from intezer_sdk.errors import AnalysisIsAlreadyRunningError, AnalysisIsStillRunningError, HashDoesNotExistError, IntezerError, InvalidAlertMappingError
+from intezer_sdk.errors import (AnalysisIsAlreadyRunningError, AnalysisIsStillRunningError, HashDoesNotExistError, IntezerError,
+                                InvalidAlertMappingError)
 from intezer_sdk.index import Index
 from requests.exceptions import HTTPError
 
-from intezer_consts import REQUESTER, INTEZER_JSON_APIKEY
+from intezer_consts import INTEZER_JSON_APIKEY, REQUESTER
 
 try:
     import phantom.app as phantom
@@ -335,7 +336,7 @@ class IntezerConnector(BaseConnector):
             mapping_details = json.loads(alert_mapping)
         except Exception as e:
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Invalid json - {e}')
-        self.send_progress(f'Submitting alert')
+        self.send_progress('Submitting alert')
         try:
             alert = Alert.send(raw_alert=alert_details,
                                source=source,
@@ -455,8 +456,9 @@ class IntezerConnector(BaseConnector):
                 current_data['file_type'] = ','.join(contains)
             action_result.add_data(current_data)
             action_result.update_summary(current_data)
-            action_result.set_status(phantom.APP_SUCCESS,
-                                     f'File successfully retrieved and added to vault - vault_id = {vault_ret_dict[phantom.APP_JSON_HASH]}')
+            action_result.set_status(
+                phantom.APP_SUCCESS,
+                f'File successfully retrieved and added to vault - vault_id = {vault_ret_dict[phantom.APP_JSON_HASH]}')
         else:
             action_result.set_status(phantom.APP_ERROR, phantom.APP_ERR_FILE_ADD_TO_VAULT)
             action_result.append_to_message(vault_ret_dict['message'])
@@ -533,3 +535,7 @@ def main():
         print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
+
+
+if __name__ == '__main__':
+    main()

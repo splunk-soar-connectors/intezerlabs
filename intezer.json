@@ -89,7 +89,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": 1,
+                    "column_order": 2,
                     "example_values": [
                         "success",
                         "failed"
@@ -97,22 +97,26 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -123,25 +127,29 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "example_values": [
                         "file"
-                    ]
+                    ],
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.data.*.identifier",
                     "data_type": "string",
                     "contains": [
                         "vault id"
-                    ]
+                    ],
+                    "column_order": 9
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 10
                 }
             ],
             "render": {
@@ -196,22 +204,26 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 2
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 4
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -222,14 +234,16 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "example_values": [
                         "file"
-                    ]
+                    ],
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.identifier",
@@ -239,11 +253,13 @@
                         "sha1",
                         "sha256",
                         "md5"
-                    ]
+                    ],
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 9
                 }
             ],
             "render": {
@@ -338,29 +354,34 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 5
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 6
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "contains": [
                         "file"
-                    ]
+                    ],
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_order": 9
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -371,42 +392,48 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_order": 10
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.analysis_time",
                     "data_type": "string",
                     "contains": [
                         "time utc format"
-                    ]
+                    ],
+                    "column_order": 11
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.analysis_url",
                     "data_type": "string",
                     "contains": [
                         "analysis url"
-                    ]
+                    ],
+                    "column_order": 12
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.file_name",
                     "data_type": "string",
                     "contains": [
                         "file name"
-                    ]
+                    ],
+                    "column_order": 13
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.is_private",
                     "data_type": "boolean",
                     "contains": [
                         "is private analysis"
-                    ]
+                    ],
+                    "column_order": 14
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
-                    ]
+                    ],
+                    "column_order": 15
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.sub_verdict",
@@ -421,39 +448,45 @@
                         "suspicious_behavior",
                         "testing_activity",
                         "custom"
-                    ]
+                    ],
+                    "column_order": 16
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.iocs.files.*.sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
-                    ]
+                    ],
+                    "column_order": 17
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.iocs.network.*.ip",
                     "data_type": "string",
                     "contains": [
                         "ip"
-                    ]
+                    ],
+                    "column_order": 18
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.iocs.network.*.url",
                     "data_type": "string",
                     "contains": [
                         "url"
-                    ]
+                    ],
+                    "column_order": 19
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.ttps.*.ttp.ttp",
                     "data_type": "string",
                     "contains": [
                         "ttp"
-                    ]
+                    ],
+                    "column_order": 20
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 21
                 }
             ],
             "render": {
@@ -905,10 +938,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "submit_alert",
+            "action": "submit alert",
             "identifier": "submit_alert",
             "description": "Submit a new alert, including the raw alert information, to Intezer for processing",
-            "verbose": "Submit a new alert, including the raw alert information, to Intezer for processing",
+            "verbose": "Submit a new alert, including the raw alert information, to Intezer for processing.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -997,10 +1030,10 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "submit_suspicious_email",
+            "action": "submit suspicious email",
             "identifier": "submit_suspicious_email",
             "description": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing",
-            "verbose": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing",
+            "verbose": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing.",
             "type": "generic",
             "read_only": false,
             "parameters": {
