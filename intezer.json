@@ -953,7 +953,7 @@
                     "contains": [],
                     "value_list": [],
                     "default": "",
-                    "order": 1,
+                    "order": 0,
                     "name": "source"
                 },
                 "raw_alert": {
@@ -964,7 +964,7 @@
                     "contains": [],
                     "value_list": [],
                     "default": "",
-                    "order": 2,
+                    "order": 1,
                     "name": "raw_alert"
                 },
                 "alert_mapping": {
@@ -975,7 +975,7 @@
                     "contains": [],
                     "value_list": [],
                     "default": "",
-                    "order": 3,
+                    "order": 2,
                     "name": "alert_mapping"
                 }
             },
@@ -985,43 +985,47 @@
                     "data_type": "string",
                     "contains": [],
                     "column_name": "source",
-                    "column_order": 1
+                    "column_order": 0
                 },
                 {
                     "data_path": "action_result.parameter.raw_alert",
                     "data_type": "string",
                     "contains": [],
                     "column_name": "raw_alert",
-                    "column_order": 2
+                    "column_order": 1
                 },
                 {
                     "data_path": "action_result.parameter.alert_mapping",
                     "data_type": "string",
                     "contains": [],
                     "column_name": "alert_mapping",
-                    "column_order": 3
+                    "column_order": 2
                 },
                 {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "status",
-                    "column_order": 4
+                    "column_order": 3
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 5
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 6
                 },
                 {
                     "data_path": "summary.data.*.alert_id",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 7
                 }
             ],
             "render": {
@@ -1067,19 +1071,23 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 2
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.data.*.alert_id",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_order": 5
                 }
             ],
             "render": {
