@@ -366,7 +366,7 @@ class IntezerConnector(BaseConnector):
             return self.intezer_action_result.set_status(status)
         self.send_progress(f'Submitting suspicious email {vault_id}')
         try:
-            alert = Alert.send_phishing_email(email_path=file_content, api=self.api, alert_sender=REQUESTER)
+            alert = Alert.send_phishing_email(email_path=file_path, api=self.api, alert_sender=REQUESTER)
         except IOError as e:
             self.send_progress(f'Failed - Email file not found - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Email file not found - {e}')
