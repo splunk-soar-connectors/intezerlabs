@@ -24,7 +24,6 @@ import json
 import os
 import shutil
 import uuid
-from io import BytesIO
 
 import requests
 from intezer_sdk.alerts import Alert
@@ -367,9 +366,7 @@ class IntezerConnector(BaseConnector):
             return self.intezer_action_result.set_status(status)
         self.send_progress(f'Submitting suspicious email {vault_id}')
         try:
-            with open(file_path, 'rb') as f:
-                file_content = BytesIO(f.read())
-                alert = Alert.send_phishing_email(raw_email=file_content, api=self.api, alert_sender=REQUESTER)
+            alert = Alert.send_phishing_email(email_path=file_content, api=self.api, alert_sender=REQUESTER)
         except IOError as e:
             self.send_progress(f'Failed - Email file not found - {e}')
             return self.intezer_action_result.set_status(phantom.APP_ERROR, f'Email file not found - {e}')
