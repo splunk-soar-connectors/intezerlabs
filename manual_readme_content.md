@@ -131,10 +131,12 @@ Read only: **True**
 
 Provide either analysis_id or file_hash.
 
-| PARAMETER       | REQUIRED | DESCRIPTION                                                                                 | TYPE   | CONTAINS                        |
-|-----------------|----------|---------------------------------------------------------------------------------------------|--------|---------------------------------| 
-| **analysis_id** | optional | File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis | string |                                 |  
-| **file_hash**   | optional | Hash of the desired report                                                                  | string | `hash`  `sha256`  `sha1`  `md5` |  
+| PARAMETER               | REQUIRED | DESCRIPTION                                                                                 | TYPE    | CONTAINS                        |
+|-------------------------|----------|---------------------------------------------------------------------------------------------|---------|---------------------------------| 
+| **analysis_id**         | optional | File analysis ID. The analysis ID is returned when submitting a file or a hash for analysis | string  |                                 |  
+| **file_hash**           | optional | Hash of the desired report                                                                  | string  | `hash`  `sha256`  `sha1`  `md5` |  
+| **private_only**        | optional | Whether to show only private reports (relevant only for hashes).                            | boolean |                                 |  
+| **wait_for_completion** | optional | Whether to wait for the analysis to complete before returning the report.                   | boolean |                                 |  
 
 #### Action Output
 
@@ -194,9 +196,10 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER       | REQUIRED | DESCRIPTION                                                                     | TYPE   | CONTAINS |
-|-----------------|----------|---------------------------------------------------------------------------------|--------|----------| 
-| **analysis_id** | required | URL analysis ID. The analysis ID is returned when submitting a URL for analysis | string |          |  
+| PARAMETER               | REQUIRED | DESCRIPTION                                                                     | TYPE    | CONTAINS |
+|-------------------------|----------|---------------------------------------------------------------------------------|---------|----------| 
+| **analysis_id**         | required | URL analysis ID. The analysis ID is returned when submitting a URL for analysis | string  |          |  
+| **wait_for_completion** | optional | Whether to wait for the analysis to finish.                                     | boolean |          |  
 
 #### Action Output
 
@@ -220,10 +223,10 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER       | REQUIRED | DESCRIPTION                             | TYPE   | CONTAINS |
-|-----------------|----------|-----------------------------------------|--------|----------| 
-| **alert_id**    | required | The alert id to query                   | string |          |  
-| **environment** | required | The environment to get the report about | string |          |  
+| PARAMETER               | REQUIRED | DESCRIPTION                                 | TYPE    | CONTAINS |
+|-------------------------|----------|---------------------------------------------|---------|----------| 
+| **alert_id**            | required | The alert id to query                       | string  |          |  
+| **wait_for_completion** | optional | Whether to wait for the analysis to finish. | boolean |          |  
 
 #### Action Output
 
@@ -280,12 +283,11 @@ Read only: **True**
 
 #### Action Parameters
 
-| PARAMETER       | REQUIRED | DESCRIPTION                   | TYPE   | CONTAINS                        |
-|-----------------|----------|-------------------------------|--------|---------------------------------| 
-| **index_as**    | required | Index as trusted or malicious | string | `trusted`  `malicious`          |  
-| **file_hash**   | optional | hash to index                 | string | `hash`  `sha256`  `sha1`  `md5` |  
-| **vault_id**    | optional | File's vault ID               | string | `vault id`                      |  
-| **family_name** | optional | family name to index as       | string |                                 |  
+| PARAMETER       | REQUIRED | DESCRIPTION                   | TYPE   | CONTAINS               |
+|-----------------|----------|-------------------------------|--------|------------------------| 
+| **index_as**    | required | Index as trusted or malicious | string | `trusted`  `malicious` |  
+| **sha256**      | optional | sha256 to index               | string | `sha256`               |  
+| **family_name** | optional | family name to index as       | string |                        |  
 
 #### Action Output
 
