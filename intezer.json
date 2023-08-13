@@ -1241,7 +1241,7 @@
         "wheel": [
             {
                 "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18.7-py3-none-any.whl"
+                "input_file": "wheels/py3/intezer_sdk-1.18.8-py3-none-any.whl"
             }
         ]
     },
@@ -1249,7 +1249,7 @@
         "wheel": [
             {
                 "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18.7-py3-none-any.whl"
+                "input_file": "wheels/py3/intezer_sdk-1.18.8-py3-none-any.whl"
             }
         ]
     }
