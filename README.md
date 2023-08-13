@@ -1,6 +1,6 @@
 # Intezer Labs
 
-Publisher: Splunk  
+Publisher: Intezer Labs  
 Connector Version: 1.1.0  
 Product Vendor: Intezer Labs  
 Product Name: Intezer  

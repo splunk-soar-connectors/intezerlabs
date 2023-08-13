@@ -1,13 +1,15 @@
+# Intezer Labs
+
+Publisher: Intezer Labs  
+Connector Version: 1.1.0  
+Product Vendor: Intezer Labs  
+Product Name: Intezer  
+Product Version Supported (regex): ".\*"  
+Minimum Product Version: 5.5.0
+
 [comment]: # " File: README.md"
 [comment]: # ""
 [comment]: # "    Copyright (c) Intezer Labs, 2023"
-[comment]: # ""
-[comment]: # "    This unpublished material is proprietary to JupiterOne."
-[comment]: # "    All rights reserved. The methods and"
-[comment]: # "    techniques described herein are considered trade secrets"
-[comment]: # "    and/or confidential. Reproduction or distribution, in whole"
-[comment]: # "    or in part, is forbidden except by express written permission"
-[comment]: # "    of JupiterOne."
 [comment]: # ""
 [comment]: # "    Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "    you may not use this file except in compliance with the License."
@@ -20,15 +22,6 @@
 [comment]: # "    either express or implied. See the License for the specific language governing permissions"
 [comment]: # "    and limitations under the License."
 [comment]: # ""
-# Intezer Labs
-
-Publisher: Splunk  
-Connector Version: 1.1.0  
-Product Vendor: Intezer Labs  
-Product Name: Intezer  
-Product Version Supported (regex): ".\*"  
-Minimum Product Version: 5.5.0
-
 ## About Intezer Splunk SOAR Connector
 
 Intezer connector for Splunk SOAR enables security teams to automate the analysis, detection, and
