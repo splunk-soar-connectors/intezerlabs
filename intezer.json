@@ -11,7 +11,7 @@
     "product_version_regex": ".*",
     "publisher": "Intezer Labs",
     "license": "Copyright (c) Intezer Labs, 2023",
-    "app_version": "1.0.1",
+    "app_version": "1.1.0",
     "utctime_updated": "2023-07-17T14:43:38.088340Z",
     "package_name": "phantom_intezer",
     "main_module": "intezer_connector.py",
@@ -55,6 +55,15 @@
                         "vault id"
                     ],
                     "order": 0
+                },
+                "related_alert_id": {
+                    "description": "The alert ID that the file is related to",
+                    "data_type": "string",
+                    "contains": [
+                        "alert id"
+                    ],
+                    "order": 1,
+                    "primary": true
                 }
             },
             "output": [
@@ -68,10 +77,19 @@
                     "column_order": 0
                 },
                 {
+                    "data_path": "action_result.parameter.related_alert_id",
+                    "data_type": "string",
+                    "contains": [
+                        "alert id"
+                    ],
+                    "column_name": "Related Alert ID",
+                    "column_order": 1
+                },
+                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": 1,
+                    "column_order": 2,
                     "example_values": [
                         "success",
                         "failed"
@@ -79,22 +97,30 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis ID",
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -105,25 +131,33 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_name": "Analysis Status",
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "example_values": [
                         "file"
-                    ]
+                    ],
+                    "column_name": "Analysis Type",
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.data.*.identifier",
                     "data_type": "string",
                     "contains": [
                         "vault id"
-                    ]
+                    ],
+                    "column_name": "Vault ID",
+                    "column_order": 9
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 10
                 }
             ],
             "render": {
@@ -178,22 +212,30 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 2
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 4
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis ID",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -204,14 +246,18 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_name": "Analysis Status",
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "example_values": [
                         "file"
-                    ]
+                    ],
+                    "column_name": "Analysis Type",
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.identifier",
@@ -221,11 +267,15 @@
                         "sha1",
                         "sha256",
                         "md5"
-                    ]
+                    ],
+                    "column_name": "Hash",
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 9
                 }
             ],
             "render": {
@@ -320,29 +370,39 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 5
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 6
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "contains": [
                         "file"
-                    ]
+                    ],
+                    "column_name": "Analysis Type",
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis ID",
+                    "column_order": 9
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -353,42 +413,54 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_name": "Analysis Status",
+                    "column_order": 10
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.analysis_time",
                     "data_type": "string",
                     "contains": [
                         "time utc format"
-                    ]
+                    ],
+                    "column_name": "Analysis Time",
+                    "column_order": 11
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.analysis_url",
                     "data_type": "string",
                     "contains": [
                         "analysis url"
-                    ]
+                    ],
+                    "column_name": "Analysis URL",
+                    "column_order": 12
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.file_name",
                     "data_type": "string",
                     "contains": [
                         "file name"
-                    ]
+                    ],
+                    "column_name": "File Name",
+                    "column_order": 13
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.is_private",
                     "data_type": "boolean",
                     "contains": [
                         "is private analysis"
-                    ]
+                    ],
+                    "column_name": "Is Private",
+                    "column_order": 14
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
-                    ]
+                    ],
+                    "column_name": "SHA256",
+                    "column_order": 15
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.sub_verdict",
@@ -403,39 +475,51 @@
                         "suspicious_behavior",
                         "testing_activity",
                         "custom"
-                    ]
+                    ],
+                    "column_name": "Sub Verdict",
+                    "column_order": 16
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.iocs.files.*.sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
-                    ]
+                    ],
+                    "column_name": "IOCs SHA256",
+                    "column_order": 17
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.iocs.network.*.ip",
                     "data_type": "string",
                     "contains": [
                         "ip"
-                    ]
+                    ],
+                    "column_name": "IOCs IP",
+                    "column_order": 18
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.iocs.network.*.url",
                     "data_type": "string",
                     "contains": [
                         "url"
-                    ]
+                    ],
+                    "column_name": "IOCs URL",
+                    "column_order": 19
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.ttps.*.ttp.ttp",
                     "data_type": "string",
                     "contains": [
                         "ttp"
-                    ]
+                    ],
+                    "column_name": "TTPs",
+                    "column_order": 20
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 21
                 }
             ],
             "render": {
@@ -484,22 +568,30 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 2
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 4
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis ID",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -510,11 +602,15 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_name": "Analysis Status",
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 7
                 }
             ],
             "render": {
@@ -575,29 +671,39 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.analysis_type",
                     "data_type": "string",
                     "contains": [
                         "url"
-                    ]
+                    ],
+                    "column_name": "Analysis Type",
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data.*.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis ID",
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.analysis_status",
@@ -608,81 +714,105 @@
                         "queued",
                         "failed",
                         "finished"
-                    ]
+                    ],
+                    "column_name": "Analysis Status",
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.downloaded_file.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Analysis ID",
+                    "column_order": 9
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.downloaded_file.sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
-                    ]
+                    ],
+                    "column_name": "Analysis Content SHA256",
+                    "column_order": 10
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.domain_info.domain_name",
                     "data_type": "string",
                     "contains": [
                         "domain name"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Domain Name",
+                    "column_order": 11
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.indicators.*.text",
                     "data_type": "string",
                     "contains": [
                         "indicator"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Indicators",
+                    "column_order": 12
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.ip",
                     "data_type": "string",
                     "contains": [
                         "ip"
-                    ]
+                    ],
+                    "column_name": "Analysis Content IP",
+                    "column_order": 13
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.scanned_url",
                     "data_type": "string",
                     "contains": [
                         "url"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Scanned URL",
+                    "column_order": 14
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.submitted_url",
                     "data_type": "string",
                     "contains": [
                         "ip"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Submitted URL",
+                    "column_order": 15
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.summary.verdict_type",
                     "data_type": "string",
                     "contains": [
                         "verdict"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Summary Verdict Type",
+                    "column_order": 16
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.summary.verdict_name",
                     "data_type": "string",
                     "contains": [
                         "verdict name"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Summary Verdict Name",
+                    "column_order": 17
                 },
                 {
                     "data_path": "action_result.data.*.analysis_content.analysis.summary.title",
                     "data_type": "string",
                     "contains": [
                         "title"
-                    ]
+                    ],
+                    "column_name": "Analysis Content Summary Title",
+                    "column_order": 18
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 19
                 }
             ],
             "render": {
@@ -699,7 +829,7 @@
             "read_only": true,
             "parameters": {
                 "alert_id": {
-                    "description": "Alert ID from the connected detection platform or as specified when the alert was submitted to Intezer",
+                    "description": "The alert ID to query",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
@@ -743,82 +873,108 @@
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.data.*.alert_url",
                     "data_type": "string",
                     "contains": [
                         "url"
-                    ]
+                    ],
+                    "column_name": "Alert URL",
+                    "column_order": 6
                 },
                 {
                     "data_path": "action_result.data.*.source",
                     "data_type": "string",
                     "contains": [
                         "source"
-                    ]
+                    ],
+                    "column_name": "Source",
+                    "column_order": 7
                 },
                 {
                     "data_path": "action_result.data.*.alert.alert_id",
                     "data_type": "string",
                     "contains": [
                         "alert id"
-                    ]
+                    ],
+                    "column_name": "Alert Alert ID",
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.data.*.alert.alert_title",
                     "data_type": "string",
                     "contains": [
                         "alert title"
-                    ]
+                    ],
+                    "column_name": "Alert Alert Title",
+                    "column_order": 9
                 },
                 {
                     "data_path": "action_result.data.*.alert.severity",
                     "data_type": "string",
                     "contains": [
                         "alert severity"
-                    ]
+                    ],
+                    "column_name": "Alert Severity",
+                    "column_order": 10
                 },
                 {
                     "data_path": "action_result.data.*.alert.creation_time",
                     "data_type": "string",
                     "contains": [
                         "time in utc"
-                    ]
+                    ],
+                    "column_name": "Alert Creation Time",
+                    "column_order": 11
                 },
                 {
                     "data_path": "action_result.data.*.alert.is_mitigated",
-                    "data_type": "boolean"
+                    "data_type": "boolean",
+                    "column_name": "Is Mitigated",
+                    "column_order": 12
                 },
                 {
                     "data_path": "action_result.data.*.alert.device.hostname",
                     "data_type": "string",
                     "contains": [
                         "hostname"
-                    ]
+                    ],
+                    "column_name": "Hostname",
+                    "column_order": 13
                 },
                 {
                     "data_path": "action_result.data.*.alert.device.os_type",
                     "data_type": "string",
                     "contains": [
                         "os type"
-                    ]
+                    ],
+                    "column_name": "OS Type",
+                    "column_order": 14
                 },
                 {
                     "data_path": "action_result.data.*.triage_result.alert_verdict",
                     "data_type": "string",
                     "contains": [
                         "verdict"
-                    ]
+                    ],
+                    "column_name": "Alert Verdict",
+                    "column_order": 15
                 },
                 {
                     "data_path": "action_result.data.*.triage_result.risk_category",
@@ -832,49 +988,235 @@
                     "data_type": "string",
                     "contains": [
                         "risk level"
-                    ]
+                    ],
+                    "column_name": "Risk Level",
+                    "column_order": 16
                 },
                 {
                     "data_path": "action_result.data.*.triage_result.threat_name",
                     "data_type": "string",
                     "contains": [
                         "threat name"
-                    ]
+                    ],
+                    "column_name": "Threat Name",
+                    "column_order": 17
                 },
                 {
                     "data_path": "action_result.data.*.scans.*.file_analysis.analysis_id",
                     "data_type": "string",
                     "contains": [
                         "analysis id"
-                    ]
+                    ],
+                    "column_name": "Analysis ID",
+                    "column_order": 18
                 },
                 {
                     "data_path": "action_result.data.*.scans.*.file_analysis.verdict",
                     "data_type": "string",
                     "contains": [
                         "verdict"
-                    ]
+                    ],
+                    "column_name": "File Verdict",
+                    "column_order": 19
                 },
                 {
                     "data_path": "action_result.data.*.scans.file_analysis.sha256",
                     "data_type": "string",
                     "contains": [
                         "sha256"
-                    ]
+                    ],
+                    "column_name": "File SHA256",
+                    "column_order": 20
                 },
                 {
                     "data_path": "action_result.data.*.response.status",
                     "data_type": "string",
                     "contains": [
                         "response status"
-                    ]
+                    ],
+                    "column_name": "Response Status",
+                    "column_order": 21
                 },
                 {
                     "data_path": "action_result.data.*.scans",
                     "data_type": "string",
                     "contains": [
                         "scan"
+                    ],
+                    "column_name": "Scans",
+                    "column_order": 22
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 23
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "submit alert",
+            "identifier": "submit_alert",
+            "description": "Submit a new alert, including the raw alert information, to Intezer for processing",
+            "verbose": "Submit a new alert, including the raw alert information, to Intezer for processing.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "source": {
+                    "description": "Where the alert came from",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 0,
+                    "name": "source"
+                },
+                "raw_alert": {
+                    "description": "The alert raw data in JSON format",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 1,
+                    "name": "raw_alert"
+                },
+                "alert_mapping": {
+                    "description": "The mapping to use for the alert in JSON formant",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 2,
+                    "name": "alert_mapping"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.source",
+                    "data_type": "string",
+                    "column_name": "Source",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.raw_alert",
+                    "data_type": "string",
+                    "column_name": "Raw Alert",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.alert_mapping",
+                    "data_type": "string",
+                    "column_name": "Alert Mapping",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 3,
+                    "example_values": [
+                        "success",
+                        "failed"
                     ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 6
+                },
+                {
+                    "data_path": "summary.data.*.alert_id",
+                    "data_type": "string",
+                    "column_name": "Alert ID",
+                    "column_order": 7
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "submit suspicious email",
+            "identifier": "submit_suspicious_email",
+            "description": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing",
+            "verbose": "Submit a suspicious phishing email in a raw format (.MSG or .EML) to Intezer for processing.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "vault_id": {
+                    "description": "The vault ID of the email to submit",
+                    "data_type": "string",
+                    "required": true,
+                    "order": 0,
+                    "name": "vault_id",
+                    "id": 1,
+                    "param_name": "vault_id"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.vault_id",
+                    "data_type": "string",
+                    "column_name": "Vault ID",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "Status",
+                    "column_order": 1,
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "summary.data.*.alert_id",
+                    "data_type": "string",
+                    "column_name": "Alert ID",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.data",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.summary",
@@ -953,27 +1295,39 @@
                 },
                 {
                     "data_path": "action_result.data",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Data",
+                    "column_order": 4
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 5
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 6
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 7
                 },
                 {
                     "data_path": "summary.data.*.index_id",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Index ID",
+                    "column_order": 8
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 9
                 }
             ],
             "render": {
@@ -993,8 +1347,6 @@
                     "description": "File's hash (SHA1, SHA256, MD5)",
                     "data_type": "string",
                     "required": true,
-                    "primary": false,
-                    "contains": [],
                     "order": 0
                 }
             },
@@ -1002,8 +1354,7 @@
                 {
                     "data_path": "action_result.parameter.file_hash",
                     "data_type": "string",
-                    "contains": [],
-                    "column_name": "file_hash",
+                    "column_name": "File Hash",
                     "column_order": 0
                 },
                 {
@@ -1018,23 +1369,33 @@
                 },
                 {
                     "data_path": "action_result.data",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Data",
+                    "column_order": 2
                 },
                 {
                     "data_path": "action_result.message",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Message",
+                    "column_order": 3
                 },
                 {
                     "data_path": "summary.total_objects",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects",
+                    "column_order": 4
                 },
                 {
                     "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
+                    "data_type": "numeric",
+                    "column_name": "Total Objects Successful",
+                    "column_order": 5
                 },
                 {
                     "data_path": "action_result.summary",
-                    "data_type": "string"
+                    "data_type": "string",
+                    "column_name": "Summary",
+                    "column_order": 6
                 }
             ],
             "render": {
@@ -1047,7 +1408,7 @@
         "wheel": [
             {
                 "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+                "input_file": "wheels/py3/intezer_sdk-1.18.8-py3-none-any.whl"
             }
         ]
     },
@@ -1055,7 +1416,7 @@
         "wheel": [
             {
                 "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18-py3-none-any.whl"
+                "input_file": "wheels/py3/intezer_sdk-1.18.8-py3-none-any.whl"
             }
         ]
     }
