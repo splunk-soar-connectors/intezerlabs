@@ -1,1 +1,6 @@
 **Unreleased**
+* Add support for:
+    * submit_alert
+    * submit_suspicious_email
+    * detonate_file
+        * option to connect between file to alert id.
