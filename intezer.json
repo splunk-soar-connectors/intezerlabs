@@ -829,7 +829,7 @@
             "read_only": true,
             "parameters": {
                 "alert_id": {
-                    "description": "The alert id to query",
+                    "description": "The alert ID to query",
                     "data_type": "string",
                     "required": true,
                     "primary": true,
@@ -1164,7 +1164,7 @@
             "read_only": false,
             "parameters": {
                 "vault_id": {
-                    "description": "The vault id of the email to submit",
+                    "description": "The vault ID of the email to submit",
                     "data_type": "string",
                     "required": true,
                     "order": 0,
