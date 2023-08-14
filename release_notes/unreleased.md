@@ -1,5 +1,1 @@
 **Unreleased**
-* Added support for the below actions:
-    * submit alert
-    * submit suspicious email
-* Option to connect between file to alert id in 'detonate file' action
