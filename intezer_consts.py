@@ -21,3 +21,4 @@
 # and limitations under the License.
 
 INTEZER_JSON_APIKEY = 'intezer_api_key'  # pragma: allowlist secret
+REQUESTER = 'splunk_soar'
