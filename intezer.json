@@ -10,7 +10,7 @@
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "Intezer Labs",
-    "license": "Copyright (c) Intezer Labs, 2023",
+    "license": "Copyright (c) Intezer Labs, 2023-2025",
     "app_version": "1.1.0",
     "utctime_updated": "2023-07-17T14:43:38.088340Z",
     "package_name": "phantom_intezer",
