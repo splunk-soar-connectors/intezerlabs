@@ -1,6 +1,6 @@
 # File: intezer_consts.py
 #
-# Copyright (c) Intezer Labs, 2023
+# Copyright (c) Intezer Labs, 2023-2025
 #
 # This unpublished material is proprietary to JupiterOne.
 # All rights reserved. The methods and
@@ -20,5 +20,5 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-INTEZER_JSON_APIKEY = 'intezer_api_key'  # pragma: allowlist secret
-REQUESTER = 'splunk_soar'
+INTEZER_JSON_APIKEY = "intezer_api_key"  # pragma: allowlist secret
+REQUESTER = "splunk_soar"

@@ -1,6 +1,6 @@
 # File: __init__.py
 #
-# Copyright (c) Intezer Labs, 2023
+# Copyright (c) Intezer Labs, 2023-2025
 #
 # This unpublished material is proprietary to JupiterOne.
 # All rights reserved. The methods and
