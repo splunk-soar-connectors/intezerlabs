@@ -1411,13 +1411,5 @@
                 "input_file": "wheels/py3/intezer_sdk-1.18.8-py3-none-any.whl"
             }
         ]
-    },
-    "pip_dependencies": {
-        "wheel": [
-            {
-                "module": "intezer_sdk",
-                "input_file": "wheels/py3/intezer_sdk-1.18.8-py3-none-any.whl"
-            }
-        ]
     }
 }
