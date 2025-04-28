@@ -1,7 +1,7 @@
 # Intezer
 
 Publisher: Intezer Labs \
-Connector Version: 1.1.0 \
+Connector Version: 1.1.1 \
 Product Vendor: Intezer Labs \
 Product Name: Intezer \
 Minimum Product Version: 5.5.0
@@ -11,7 +11,7 @@ Intezer connector for Splunk SOAR enables security teams to automate the analysi
 # Intezer Labs
 
 Publisher: Intezer Labs\
-Connector Version: 1.1.0\
+Connector Version: 1.1.1\
 Product Vendor: Intezer Labs\
 Product Name: Intezer\
 Product Version Supported (regex): ".\*"\
